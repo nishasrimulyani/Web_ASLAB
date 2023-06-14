@@ -1,0 +1,69 @@
+html, body{
+    height: 100%;
+    background-color: #0056d7 !important;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Raleway", sans-serif;
+}
+
+.global-container{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #0056d7;
+}
+
+.login-form{
+    width: 380px;
+    height: 460px;
+    padding: 20px;
+    background-color: white !important;
+    border-radius: 10px !important;
+}
+
+.btn{
+    align-items: center;
+}
+
+/*-- Register --*/
+.regis-form{
+    width: 380px;
+    height: 510px;
+    padding: 20px;
+    background-color: white !important;
+    border-radius: 10px !important;
+}
+
+.img{
+    width: 100px;
+    height: 100px;
+    align-items: center;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/*-- Form Daftar --*/
+.form-daftar{
+    width: 800px;
+    height: 650px;
+    padding: 20px;
+    background-color: white !important;
+    border-radius: 10px !important;
+}
+
+/*-- Form Upload --*/
+.form-upload{
+    width: 800px;
+    height: 600px;
+    padding: 20px;
+    background-color: white !important;
+    border-radius: 10px !important;
+}
