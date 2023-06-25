@@ -8,7 +8,7 @@
     <div class="row mt-5">
         <div class="col-lg-12 margin-tb">
             <div class="float-start">
-                <h2>Jenis Soal Asisten</h2>
+                <h2>Jenis Soal</h2>
             </div>
         </div>
     </div>
@@ -16,8 +16,7 @@
     <div class="container-fluid">
         <div class="card card-default">
             <div class="card-body">
-                <button class="btn btn-primary" data-toggle="modal" data-target="#tambahJenisModal" id="createNewJenis">Tambah
-                    Data</button>
+                <button class="btn btn-primary" data-toggle="modal" data-target="#tambahJenisModal" id="createNewJenis">Tambah Data</button>
                 <hr>
                 <table id="table-data" class="table table-bordered">
                     <thead>
@@ -73,8 +72,7 @@
                             </div>
                     </thead>
                 </table>
-            </div>
-            <table id="table-data" class="table table-bordered">
+                <table id="table-data" class="table table-bordered">
                 <thead>
                     <tr class="text-center">
                         <th>Nama Soal</th>
@@ -120,6 +118,8 @@
                 @endforeach
                 </tbody>
             </table>
+            </div>
+            
         </div>
     </div>
     </div>

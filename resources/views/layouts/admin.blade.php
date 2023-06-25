@@ -27,6 +27,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
+    @livewireStyles
 </head>
 <body id="page-top">
 
@@ -62,8 +63,8 @@
         </div> -->
 
         <!-- Nav Item - Data Panitia -->
-        <li class="nav-item {{ Nav::isRoute('profile') }}">
-            <a class="nav-link" href="{{ route('profile') }}">
+        <li class="nav-item {{ Nav::isRoute('datapanitia.index') }}">
+            <a class="nav-link" href="{{ route('datapanitia.index') }}">
                 <i class="fas fa-fw fa-user"></i>
                 <span>{{ __('Data Panitia') }}</span>
             </a>
@@ -86,28 +87,40 @@
         </li>
 
         <!-- Nav Item - Soal -->
-        <li class="nav-item {{ Nav::isRoute('about') }}">
-            <a class="nav-link" href="{{ route('about') }}">
+        <li class="nav-item {{ Nav::isRoute('soal.index') }} dropdown">
+            <a class="nav-link" href="{{ route('soals.index') }}">
                 <i class="fas fa-list-check"></i>
                 <span>{{ __('Soal') }}</span>
             </a>
         </li>
 
-        <!-- Nav Item - Data Peserta -->
+        <li class="nav-item {{ Nav::isRoute('gambars.index') }} dropdown">
+            <a class="nav-link" href="{{ route('gambars.index') }}">
+                <i class="fas fa-list-check"></i>
+                <span>{{ __('Gambar') }}</span>
+            </a>
+        </li>
+        
+
+        
+        
+
+
+        <!-- Nav Item - Data Peserta
         <li class="nav-item {{ Nav::isRoute('about') }}">
             <a class="nav-link" href="{{ route('about') }}">
                 <i class="fas fa-fw fa-users"></i>
                 <span>{{ __('Data Pelamar') }}</span>
             </a>
-        </li>
+        </li>  -->
 
-        <!-- Nav Item - Data Nilai -->
+        <!-- Nav Item - Data Nilai 
         <li class="nav-item {{ Nav::isRoute('about') }}">
             <a class="nav-link" href="{{ route('about') }}">
                 <i class="fas fa-list-check"></i>
                 <span>{{ __('Data Nilai') }}</span>
             </a>
-        </li>
+        </li>  -->
 
         <!-- Divider -->
         <hr class="sidebar-divider d-none d-md-block">
@@ -279,12 +292,12 @@
                     <!-- Nav Item - User Information -->
                     <li class="nav-item dropdown no-arrow">
                         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Auth::user()->name ?? ''}}</span>
-                            <figure class="img-profile rounded-circle avatar font-weight-bold" data-initial="{{ Auth::user()->name[0] }}"></figure>
+                            <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Auth::user()->nama ?? ''}}</span>
+                            <figure class="img-profile rounded-circle avatar font-weight-bold" data-initial="{{ Auth::user()->nama[0] }}"></figure>
                         </a>
                         <!-- Dropdown - User Information -->
                         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                            <a class="dropdown-item" href="{{ route('profile') }}">
+                            <!--<a class="dropdown-item" href="{{ route('profile') }}">
                                 <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                 {{ __('Akun') }}
                             </a>
@@ -295,8 +308,8 @@
                             <a class="dropdown-item" href="javascript:void(0)">
                                 <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
                                 {{ __('Aktifitas') }}
-                            </a>
-                            <div class="dropdown-divider"></div>
+                            </a> 
+                            <div class="dropdown-divider"></div> -->
                             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                 <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                 {{ __('Keluar') }}
@@ -360,5 +373,7 @@
 <script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
 <script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
 @stack('js')
+
+@livewireScripts
 </body>
 </html>

@@ -9,7 +9,7 @@
     <title>LABTIF UNSUR</title>
 
     @include('include.style')
-    
+    @livewireStyles
   </head>
   <body>
    <!-- ======= Header ======= -->
@@ -413,7 +413,7 @@
               <div class="text-center"><button type="submit">Kirim</button></div>
             </form>
 
-          </div>
+          </div> 
 
         </div>
 
@@ -436,5 +436,6 @@
 
 
   @include('include.script')
+  @livewireScripts
 </body>
 </html>

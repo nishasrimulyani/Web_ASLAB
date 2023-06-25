@@ -16,4 +16,14 @@ class JenisSoal extends Model
         'total_nilai',
         'passing_grade',
     ];
+
+    protected $guarded = [];
+
+    public function soals(){
+        return $this->hasMany(Soal::class);
+    }
+
+    public function getName($id){
+        return $this->where('id',$id)->value('nama');
+    }
 }

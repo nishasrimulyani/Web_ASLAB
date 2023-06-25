@@ -60,8 +60,7 @@
                             </div>
                     </thead>
                 </table>
-            </div>
-            <table id="table-data" class="table table-bordered">
+                <table id="table-data" class="table table-bordered">
                 <thead>
                     <tr class="text-center">
                         <th>Nama Posisi</th>
@@ -98,6 +97,8 @@
                 @endforeach
                 </tbody>
             </table>
+            </div>
+            
         </div>
     </div>
     </div>

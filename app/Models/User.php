@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -9,7 +10,7 @@ use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -17,7 +18,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'last_name', 'email', 'password',
+        'nama', 'username', 'email', 'password',
     ];
 
     /**
@@ -45,11 +46,11 @@ class User extends Authenticatable
      */
     public function getFullNameAttribute()
     {
-        if (is_null($this->last_name)) {
-            return "{$this->name}";
+        if (is_null($this->username)) {
+            return "{$this->nama}";
         }
 
-        return "{$this->name} {$this->last_name}";
+        return "{$this->nama} {$this->username}";
     }
 
     /**
@@ -62,4 +63,20 @@ class User extends Authenticatable
     {
         $this->attributes['password'] = bcrypt($value);
     }
+
+    public function ujians(){
+        return $this->belongsToMany(Ujian::class)->withPivot('catatan_jawaban', 'nilai')->withTimestamps();
+     }
+ 
+     public function getName($id){
+         return $this->where('id',$id)->value('nama');
+     }
+ 
+     public function getScore($user_id, $ujian_id){
+         return $this->find($user_id)
+                     ->ujians
+                     ->find($ujian_id)
+                     ->pivot
+                     ->nilai;
+     }
 }
