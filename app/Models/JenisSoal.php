@@ -24,6 +24,6 @@ class JenisSoal extends Model
     }
 
     public function getName($id){
-        return $this->where('id',$id)->value('nama');
+        return $this->where('id',$id)->value('nama_soal');
     }
 }

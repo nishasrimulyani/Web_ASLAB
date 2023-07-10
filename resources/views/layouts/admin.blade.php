@@ -71,7 +71,7 @@
         </li>
 
         <!-- Nav Item - Lowongan Asisten -->
-        <li class="nav-item {{ Nav::isRoute('lowongans.index') }}">
+        <li class="nav-item {{ Nav::isRoute('lowongan.index') }}">
             <a class="nav-link" href="{{ route('lowongan.index') }}">
                 <i class="fas fa-newspaper"></i>
                 <span>{{ __('Lowongan Asisten') }}</span>
@@ -87,7 +87,7 @@
         </li>
 
         <!-- Nav Item - Soal -->
-        <li class="nav-item {{ Nav::isRoute('soal.index') }} dropdown">
+        <li class="nav-item {{ Nav::isRoute('soals.index') }} dropdown">
             <a class="nav-link" href="{{ route('soals.index') }}">
                 <i class="fas fa-list-check"></i>
                 <span>{{ __('Soal') }}</span>
@@ -98,6 +98,43 @@
             <a class="nav-link" href="{{ route('gambars.index') }}">
                 <i class="fas fa-list-check"></i>
                 <span>{{ __('Gambar') }}</span>
+            </a>
+        </li>
+
+        <li class="nav-item {{ Nav::isRoute('ujians.index') }} dropdown">
+            <a class="nav-link" href="{{ route('ujians.index') }}">
+                <i class="fas fa-list-check"></i>
+                <span>{{ __('Ujian') }}</span>
+            </a>
+        </li>
+
+        <li class="nav-item {{ Nav::isRoute('profile') }} dropdown">
+            <a class="nav-link" href="{{ route('profile') }}">
+                <i class="fas fa-list-check"></i>
+                <span>{{ __('Data Diri') }}</span>
+            </a>
+        </li>
+
+        <li class="nav-item {{ Nav::isRoute('biodatas.index') }} dropdown">
+            <a class="nav-link" href="{{ route('biodata.index') }}">
+                <i class="fas fa-list-check"></i>
+                <span>{{ __('Biodata') }}</span>
+            </a>
+        </li>
+
+        <hr class="sidebar-divider my-0">
+
+        <li class="nav-item {{ Nav::isRoute('permissions.index') }} dropdown">
+            <a class="nav-link" href="{{ route('permissions.index') }}">
+                <i class="fas fa-list-check"></i>
+                <span>{{ __('Permissions') }}</span>
+            </a>
+        </li>
+
+        <li class="nav-item {{ Nav::isRoute('roles.index') }} dropdown">
+            <a class="nav-link" href="{{ route('roles.index') }}">
+                <i class="fas fa-list-check"></i>
+                <span>{{ __('Role') }}</span>
             </a>
         </li>
         

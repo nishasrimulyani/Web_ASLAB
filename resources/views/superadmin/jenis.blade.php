@@ -85,7 +85,7 @@
                 </thead>
 
                 @foreach ($jenis_soals as $jenis_soal)
-                    <tr>
+                    <tr style="text-align: center">
                         <td>{{ $jenis_soal->nama_soal }} </td>
                         <td>{{ $jenis_soal->jumlah_soal }}</td>
                         <td>{{ $jenis_soal->jumlah_minimal_benar }} </td>

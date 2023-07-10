@@ -40,7 +40,7 @@ class SoalController extends Controller
     {
         $subjects = JenisSoal::latest()->get();
         $images = Gambar::latest()->get();
-        return view('soals.create', compact('jenissoals', 'gambar'));
+        return view('soal.create', compact('subjects', 'images'));
     }
 
     /**
@@ -94,7 +94,7 @@ class SoalController extends Controller
     {
         $subjects = JenisSoal::latest()->get();
         $images = Gambar::latest()->get();
-        return view('soals.edit', compact('soal', 'jenissoals', 'gambar'));
+        return view('soal.edit', compact('question','subjects', 'images'));
     }
 
     /**
@@ -107,7 +107,7 @@ class SoalController extends Controller
     public function update(Request $request, Soal $question)
     {
         $this->validate($request, [
-            'jenis_id'  => 'required',
+            'jenis_id'    => 'required',
             'detail'      => 'required',
             'option_A'    => 'required',
             'option_B'    => 'required',
@@ -134,7 +134,7 @@ class SoalController extends Controller
 
         if($question){
             //redirect dengan pesan sukses
-            return redirect()->route('soalss.index')->with(['success' => 'Data Berhasil Diupdate!']);
+            return redirect()->route('soals.index')->with(['success' => 'Data Berhasil Diupdate!']);
         }else{
             //redirect dengan pesan error
             return redirect()->route('soals.index')->with(['error' => 'Data Gagal Diupdate!']);
@@ -147,20 +147,15 @@ class SoalController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function delete($id)
     {
         $question = Soal::findOrFail($id);
         $question->delete();
 
-
-        if($question){
-            return response()->json([
-                'status' => 'success'
-            ]);
-        }else{
-            return response()->json([
-                'status' => 'error'
-            ]);
-        }
+        $notification = array(
+            'message' => 'Data Jenis Soal berhasil dihapus',
+            'alert-type' => 'success'
+        );
+         return redirect('soals')->with($notification);
     }
 }

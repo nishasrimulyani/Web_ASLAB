@@ -21,6 +21,7 @@
                 <table id="table-data" class="table table-bordered">
                 <thead>
                     <tr class="text-center">
+                        <th scope="col" style="text-align: center;width: 6%">No</th>
                         <th>Jenis Soal</th>
                         <th>Detail</th>
                         <th>Lampiran</th>
@@ -34,10 +35,11 @@
                     </tr>
                 </thead>
 
+                <tbody>
                 @foreach ($questions as $no => $question)
                                 <tr>
                                     <th scope="row" style="text-align: center">{{ ++$no + ($questions->currentPage()-1) * $questions->perPage() }}</th>
-                                    <td>{{ $jenissoal->getName($question->jenis_id) }}</td>
+                                    <td>{{ $subject->getName($question->jenis_id) }}</td>
                                     <td>{{ $question->detail }}</td>
                                     <td>
                                        @if($question->image_id)
@@ -52,19 +54,20 @@
                                     <td>{{ $question->option_D }}</td>
                                     <td>{{ $question->jawaban }}</td>
                                     <td>{{ $question->penjelasan }}</td>
-                                    <td>{{ $user->getName($question->dibuat_oleh) }}</td>
-                                    <td class="text-center">
-                                        @can('questions.edit')
-                                            <a href="{{ route('soals.edit', $soal->id) }}" class="btn btn-sm btn-primary">
-                                                <i class="fa fa-pencil-alt"></i>
+                                   <!-- <td>{{ $user->getName($question->dibuat_oleh) }}</td> -->
+                                    <td>
+                                        <div class="btn-group" role="group" aria-label="Basic example">
+                                            <a href="{{ route('soals.edit', $question->id) }}" class="btn btn-success">
+                                            Ubah
                                             </a>
-                                        @endcan
-                                        
-                                        @can('questions.delete')
-                                            <button onClick="Hapus(this.id)" class="btn btn-sm btn-danger" id="{{ $soal->id }}">
-                                                <i class="fa fa-trash"></i>
-                                            </button>
-                                        @endcan
+                                            
+                                            <a type="button" id="btn-hapus-soal"
+                                                class="btn btn-danger hapusJenis-{{ $question->id }}"
+                                                onclick="return confirm('Apakah Kamu yakin?')"
+                                                href="{{ url('/soal/delete/' . $question->id) }}">
+                                                Hapus
+                                            </a>
+                                        </div>
                                     </td>
                                 </tr>
                             @endforeach
@@ -74,3 +77,4 @@
         </div>    
     </div>
 @endsection
+

@@ -31,6 +31,6 @@ class UserTableSeeder extends Seeder
 
         //assign role with permission to user
         $user = User::find(1);
-        $user->assignRole($role->nama);
+        $user->assignRole($role->name);
     }
 }

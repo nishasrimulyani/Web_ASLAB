@@ -70,7 +70,7 @@
                 </thead>
 
                 @foreach ($lowongans as $lowongan)
-                    <tr>
+                    <tr style="text-align: center">
                         <td>{{ $lowongan->nama_loker }} </td>
                         <td>{{ $lowongan->jumlah_yang_dibutuhkan }}</td>
                         <td>

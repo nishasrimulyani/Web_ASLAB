@@ -74,7 +74,7 @@
                 </thead>
 
                 @foreach ($users as $user)
-                    <tr>
+                    <tr style="text-align: center">
                         <td>{{ $user->nama }} </td>
                         <td>{{ $user->username }}</td>
                         <td>{{ $user->password }} </td>

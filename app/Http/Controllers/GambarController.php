@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Gambar;
+use Illuminate\Support\Facades\Storage;
 
 class GambarController extends Controller
 {
@@ -42,10 +43,10 @@ class GambarController extends Controller
 
         if($image){
             //redirect dengan pesan sukses
-            return redirect()->route('gambar.index')->with(['success' => 'Data Berhasil Disimpan!']);
+            return redirect()->route('gambars.index')->with(['success' => 'Data Berhasil Disimpan!']);
         }else{
             //redirect dengan pesan error
-            return redirect()->route('gambar.index')->with(['error' => 'Data Gagal Disimpan!']);
+            return redirect()->route('gambars.index')->with(['error' => 'Data Gagal Disimpan!']);
         }
     }
 
@@ -55,20 +56,17 @@ class GambarController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function delete($id)
     {
         $image = Gambar::findOrFail($id);
         $link= Storage::disk('local')->delete('public/images/'.$image->link);
         $image->delete();
 
-        if($image){
-            return response()->json([
-                'status' => 'success'
-            ]);
-        }else{
-            return response()->json([
-                'status' => 'error'
-            ]);
-        }
+        $notification = array(
+            'message' => 'Gambar berhasil dihapus',
+            'alert-type' => 'success'
+        );
+         return redirect('gambars')->with($notification);
+        
     }
 }
