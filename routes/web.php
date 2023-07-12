@@ -10,6 +10,7 @@ use App\Http\Controllers\GambarController;
 use App\Http\Controllers\StorageController;
 use App\Http\Controllers\UjianController;
 use App\Http\Controllers\BiodataController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -79,12 +80,11 @@ Route::group(['middleware' => 'auth'], function(){
         Route::get('/ujians/review/{user_id}/{ujian_id}', [UjianController::class, 'review'])->name('ujians.review');
 
     //Permission
-    Route::resource('permissions', PermissionController::class)->only([
-        'index'
-    ]);
+    Route::resource('permissions', PermissionController::class);
 
     //roles
-    Route::resource('roles', RoleController::class)->except([
-        'show'
-    ]);
+    Route::resource('roles', RoleController::class);
+
+    //users
+    Route::resource('users', UserController::class);
 });

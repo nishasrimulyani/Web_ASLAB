@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Ujia ;
+use App\Models\Ujian;
 use App\Models\User;
 use App\Models\Gambar;
 use Livewire\Component;
@@ -21,9 +21,9 @@ class Review extends Component
     public function mount($user_id, $ujian_id)
     {
         $this->user_id = $user_id;
-        $this->ujian_id = $exam_id;
+        $this->ujian_id = $ujian_id;
         $user = User::findOrfail($user_id);
-        $user_exam = $user->ujians->find($exam_id);
+        $user_exam = $user->ujians->find($ujian_id);
         $answer = $user_exam->pivot->catatan_jawaban;
 
         $result = json_decode($answer);
@@ -32,13 +32,13 @@ class Review extends Component
 
     public function questions()
     {
-        $exam = Ujian::findOrFail($this->exam_id);
+        $exam = Ujian::findOrFail($this->ujian_id);
         $exam_questions = $exam->questions;
-        $this->total_soal = $exam_questions->count();
+        $this->total_soal = $exam->count();
 
-        if($this->total_question >= $exam->total_soal) {
+        if($this->total_soal >= $exam->total_soal) {
             $questions = $exam->soals()->take($exam->total_soal)->paginate(1);
-        } elseif($this->total_question < $exam->total_soal ) {
+        } elseif($this->total_soal < $exam->total_soal ) {
             $questions = $exam->soals()->take($this->total_soal)->paginate(1);
         } 
         return $questions;
@@ -52,9 +52,9 @@ class Review extends Component
     public function render()
     {
         return view('livewire.review', [
-            'exam'      => Ujian::findOrFail($this->exam_id),
-            'questions' => $this->soals(),
-            'image'     => new Image()
+            'exam'      => Ujian::findOrFail($this->ujian_id),
+            'questions' => $this->questions(),
+            'image'     => new Gambar()
         ]);
     }
 }

@@ -32,7 +32,7 @@ class Quiz extends Component
     {
         $exam = Ujian::findOrFail($this->ujian_id);
         $exam_questions = $exam->questions;
-        $this->total_soal = $exam_questions->count();
+        $this->total_soal = $exam->count();
 
         if($this->total_soal >= $exam->total_soal) {
             $questions = $exam->soals()->take($exam->total_soal)->paginate(1);
@@ -56,9 +56,9 @@ class Quiz extends Component
             foreach($this->selectedAnswers as $key => $value)
             {
                 $userAnswer = "";
-                $rightAnswer = Soal::findOrFail($key)->answer;
+                $rightAnswer = Soal::findOrFail($key)->jawaban;
                 $userAnswer = substr($value, strpos($value,'-')+1);
-                $bobot = 100 / $this->total_question;
+                $bobot = 100 / $this->total_soal;
                 if($userAnswer == $rightAnswer){
                     $score = $score + $bobot;
                 }
@@ -87,7 +87,7 @@ class Quiz extends Component
     {
         return view('livewire.quiz', [
             'exam'      => Ujian::findOrFail($this->ujian_id),
-            'questions' => $this->soals(),
+            'questions' => $this->questions(),
             'image'     => new Gambar()
         ]);
     }

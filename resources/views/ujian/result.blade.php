@@ -23,7 +23,7 @@
             </div>
             <div class="card-footer">
                     <a href="{{ route('ujians.review', [$user->id, $exam->id]) }}" class="btn btn-primary mr-1 btn-submit" role="button" aria-pressed="true">Review</a>
-                    <a href="{{ route('ujians.index') }}" class="btn btn-warning btn-resetk" role="button" aria-pressed="true">Kemabli</a>
+                    <a href="{{ route('ujians.index') }}" class="btn btn-warning btn-resetk" role="button" aria-pressed="true">Kembali</a>
             </div>
         </div>
     </div>

@@ -26,8 +26,6 @@
             wire:click="answers({{ $question['id'] }}, '{{ $question['option_C'] }}')"><p class="text-left"><b> C. {{ $question['option_C'] }} </b><i class="{{ $question['option_C'] == $question['answer'] ? 'fas fa-check' : ''  }}"></i></p></button>
             <button type="button" class="{{ in_array($question['id'].'-'.$question['option_D'], $selectedAnswers) ? 'btn btn-info border border-secondary rounded' : 'btn btn-light border border-secondary rounded' }}"
             wire:click="answers({{ $question['id'] }}, '{{ $question['option_D'] }}')"><p class="text-left"><b> D. {{ $question['option_D'] }} </b><i class="{{ $question['option_D'] == $question['answer'] ? 'fas fa-check' : ''  }}"></i></p></button>
-            <button type="button" class="{{ in_array($question['id'].'-'.$question['option_E'], $selectedAnswers) ? 'btn btn-info border border-secondary rounded' : 'btn btn-light border border-secondary rounded' }}"
-            wire:click="answers({{ $question['id'] }}, '{{ $question['option_E'] }}')"><p class="text-left"><b> E. {{ $question['option_E'] }} </b><i class="{{ $question['option_E'] == $question['answer'] ? 'fas fa-check' : ''  }}"></i></p></button>
         </div>
         <br><br>
         <i>Pembahasan</i> 
@@ -46,7 +44,7 @@
     </div>
     <div class="card-footer">
         @if ($questions->currentPage() == $questions->lastPage())
-        <a href="{{ route('ujians.index') }}" class="btn btn-primary btn-lg btn-block" role="button" aria-pressed="true">Kembali</a>
+        <a href="{{ route('ujians.index') }}" class="btn btn-primary btn-block" role="button" aria-pressed="true">Kembali</a>
         @endif
     </div>
 </div>

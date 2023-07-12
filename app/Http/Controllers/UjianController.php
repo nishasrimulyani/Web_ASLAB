@@ -204,6 +204,6 @@ class UjianController extends Controller
 
     public function review($userId, $examId)
     {
-        return view('ujians.review', compact('userId', 'examId'));
+        return view('ujian.review', compact('userId', 'examId'));
     }
 }

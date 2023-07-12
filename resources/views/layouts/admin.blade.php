@@ -124,6 +124,13 @@
 
         <hr class="sidebar-divider my-0">
 
+        <li class="nav-item {{ Nav::isRoute('users.index') }} dropdown">
+            <a class="nav-link" href="{{ route('users.index') }}">
+                <i class="fas fa-list-check"></i>
+                <span>{{ __('Pengguna') }}</span>
+            </a>
+        </li>
+
         <li class="nav-item {{ Nav::isRoute('permissions.index') }} dropdown">
             <a class="nav-link" href="{{ route('permissions.index') }}">
                 <i class="fas fa-list-check"></i>

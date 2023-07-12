@@ -2,7 +2,7 @@
     <div class="card-header">
         <div class="row">
             <div class="col-12">
-                <h4><i class="fas fa-exam"></i> {{ $ujian['nama'] }} </h4>
+                <h4><i class="fas fa-exam"></i> {{ $exam['nama'] }} </h4>
             </div>
             <div class="col-12">
                 <!-- Display the countdown timer in an element -->
@@ -31,8 +31,6 @@
             wire:click="answers({{ $question['id'] }}, '{{ $question['option_C'] }}')"><p class="text-left"><b> C. {{ $question['option_C'] }} </b></p></button>
             <button type="button" class="{{ in_array($question['id'].'-'.$question['option_D'], $selectedAnswers) ? 'btn btn-success border border-secondary rounded' : 'btn btn-light border border-secondary rounded' }}"
             wire:click="answers({{ $question['id'] }}, '{{ $question['option_D'] }}')"><p class="text-left"><b> D. {{ $question['option_D'] }} </b></p></button>
-            <button type="button" class="{{ in_array($question['id'].'-'.$question['option_E'], $selectedAnswers) ? 'btn btn-success border border-secondary rounded' : 'btn btn-light border border-secondary rounded' }}"
-            wire:click="answers({{ $question['id'] }}, '{{ $question['option_E'] }}')"><p class="text-left"><b> E. {{ $question['option_E'] }} </b></p></button>
         </div>
         
     </div>
@@ -47,7 +45,7 @@
     </div>
     <div class="card-footer">
         @if ($questions->currentPage() == $questions->lastPage())
-            <button wire:click="submitAnswers" class="btn btn-primary btn-lg btn-block">Submit</button>
+            <button wire:click="submitAnswers" class="btn btn-primary btn-block">Submit</button>
         @endif
     </div>
 </div>

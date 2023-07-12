@@ -16,7 +16,7 @@
     <div class="container-fluid">
         <div class="card card-default">
             <div class="card-body">
-                @livewire('review', ['user_id' => $userId, 'exam_id' => $examId])
+                @livewire('review', ['user_id' => $userId, 'ujian_id' => $examId])
             </div>
         </div>
     </div>

@@ -26,8 +26,8 @@
                         <li class="list-group-item">Ujian ditutup : {{ $ujian->selesai }}</li>
                     </ul>
                     <hr>
-                    @if(now() > $ujian->mulai && now() < $ujian->selesai)
-                        <a href="{{ route('ujians.start', $exam->id) }}" class="btn btn-primary btn-block" role="button" aria-pressed="true">Mulai</a>
+                    @if(now() >= $ujian->mulai && now() <= $ujian->selesai)
+                        <a href="{{ route('ujians.start', $ujian->id) }}" class="btn btn-primary btn-block" role="button" aria-pressed="true">Mulai</a>
                     @elseif(now() < $ujian->mulai)
                         <a onclick="goBack()" class="btn btn-warning  btn-block" role="button" aria-pressed="true">Ujian Belum Dibuka - Kembali</a>
                     @elseif(now() > $ujian->selesai)
@@ -42,8 +42,11 @@
     </div>
 
 <script type="text/javascript">
+    var now = new Date();
+
     function goBack() {
     window.history.back();
+    
 }
 </script>
 @endsection
