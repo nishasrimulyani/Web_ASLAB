@@ -16,8 +16,10 @@
     <div class="container-fluid">
         <div class="card card-default">
             <div class="card-body">
+                @hasanyrole('panitia|admin')
                 <a href="{{ route('soals.create') }}"><button class="btn btn-primary">Tambah Data</button></a>
                 <hr>
+                @endhasanyrole
                 <table id="table-data" class="table table-bordered">
                 <thead>
                     <tr class="text-center">

@@ -16,27 +16,10 @@
     <div class="container-fluid">
         <div class="card card-default">
             <div class="card-body">
+                @hasanyrole('panitia|admin')
                 <a href="{{ route('ujians.create') }}"><button class="btn btn-primary">Tambah Data</button></a>
                 <hr>
-                <form action="{{ route('ujians.index') }}" method="GET">
-                    @hasanyrole('panitia|admin')
-                        <div class="form-group">
-                            <div class="input-group mb-3">
-                                @can('ujians.create')
-                                    <div class="input-group-prepend">
-                                        <a href="{{ route('ujians.create') }}" class="btn btn-primary" style="padding-top: 10px;"><i class="fa fa-plus-circle"></i> TAMBAH</a>
-                                    </div>
-                                @endcan
-                                <input type="text" class="form-control" name="q"
-                                       placeholder="cari berdasarkan nama exam">
-                                <div class="input-group-append">
-                                    <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> CARI
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    @endhasanyrole
-                </form>
+                @endhasanyrole
                         <table class="table table-bordered">
                             <thead>
                             <tr class="text-center">
@@ -71,10 +54,11 @@
                                     <td>{{ ($exam->mulai) }}</td>
                                     <td>{{ ($exam->selesai) }}</td>
                                     <td class="text-center">
+                                        @hasanyrole('panitia|admin|peserta')
                                         <a href="{{ route('ujians.show', $exam->id) }}" class="btn btn-sm btn-info">
                                             <i class="fa fa-eye"></i>
                                         </a>
-
+                                        @endhasanyrole
                                         <a href="{{ route('ujians.edit', $exam->id) }}" class="btn btn-sm btn-success">
                                             <i class="fa fa-pencil-alt"></i>
                                         </a>

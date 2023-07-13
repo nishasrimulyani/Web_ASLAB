@@ -16,8 +16,10 @@
     <div class="container-fluid">
         <div class="card card-default">
             <div class="card-body">
+                @hasanyrole('panitia|admin')
                 <button class="btn btn-primary" data-toggle="modal" data-target="#tambahJenisModal" id="createNewJenis">Tambah Data</button>
                 <hr>
+                @endhasanyrole
                 <table id="table-data" class="table table-bordered">
                     <thead>
                         {{-- tambah data Jenis Soal --}}

@@ -43,4 +43,9 @@ class LoginController extends Controller
         session()->flash('Sukses', 'Kamu Berhasil Masuk!');
         return $this->redirectTo;
     }
+
+    protected function authenticated(Request $request, $user)
+    {
+        return redirect()->route('home');
+    }
 }

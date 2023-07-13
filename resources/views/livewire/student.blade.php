@@ -2,13 +2,13 @@
    
     @if(isset($selectedStudent))
       <div class="form-group">
-        <label>SELECTED STUDENT</label>
+        <label>Pilih Peserta</label>
         <table id="table_id" class="table table-bordered table-hover">
           <thead>
           <tr>
-            <th>Delete</th>
-            <th>Name</th>
-            <th>Checked</th>
+            <th>Hapus</th>
+            <th>Nama</th>
+            <th>Check</th>
           </tr>
           </thead>
           <tbody>
@@ -18,9 +18,9 @@
                 <td>
                     <button type="button" class="btn btn-danger" wire:click="deselectStudent({{ $student->id }})"><i class="fas fa-minus-circle"></i></button>
                 </td>
-                <td>{{ $student->name }}</td>
+                <td>{{ $student->nama }}</td>
                 <td><input class="form-check-input" type="checkbox" name="students[]" value="{{ $student->id }}" 
-                  id="check-{{ $student->id }}" }} checked></td>
+                  id="check-{{ $student->id }}" checked></td>
               </tr>
               @endforeach
           @endif
@@ -31,7 +31,7 @@
     @endif
       <div class="card">
           <div class="card-header">
-              <h3>Add Students</h3>
+              <h3>Tambah Peserta</h3>
           </div>
           <div class="card-body">
             {{-- @foreach ($selectedStudent as $item)
@@ -45,8 +45,8 @@
             <table id="table_id" class="table table-bordered table-hover">
               <thead>
               <tr>
-                <th>Choose</th>
-                <th>Name</th>
+                <th>Pilih</th>
+                <th>Nama</th>
               </tr>
               </thead>
               <tbody>
@@ -55,10 +55,10 @@
                   <td>
                       <div class="form-check form-check-inline">
                           <input class="form-check-input" wire:model="selectedStudent" type="checkbox" name="students[]" value="{{ $student->id }}" 
-                                 id="check-{{ $student->id }}" }}>
+                                 id="check-{{ $student->id }}" >
                       </div>
                   </td>
-                  <td>{{ $student->name }}</td>
+                  <td>{{ $student->nama }}</td>
                 </tr>
               @endforeach
               </tbody>

@@ -75,7 +75,7 @@ Route::group(['middleware' => 'auth'], function(){
         Route::get('/ujian/delete/{id}', [UjianController::class, 'delete'])->middleware('auth');
         Route::get('/ujians/result/{score}/{user_id}/{ujian_id}', [UjianController::class, 'result'])->name('ujians.result');
         Route::get('/ujian/start/{id}', [UjianController::class, 'start'])->name('ujians.start');
-        Route::get('ujians/student/{id}', [UjianController::class, 'student'])->name('ujians.student');
+        Route::get('ujians/peserta/{id}', [UjianController::class, 'peserta'])->name('ujians.peserta');
         Route::put('ujians/assign/{id}', [UjianController::class, 'assign'])->name('ujians.assign');
         Route::get('/ujians/review/{user_id}/{ujian_id}', [UjianController::class, 'review'])->name('ujians.review');
 

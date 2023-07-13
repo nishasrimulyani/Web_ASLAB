@@ -14,10 +14,10 @@ class PermissionsTableSeeder extends Seeder
     public function run(): void
     {
         //permission for exams
-        Permission::create(['name' => 'ujians.index']);
-        Permission::create(['name' => 'ujians.create']);
-        Permission::create(['name' => 'ujians.edit']);
-        Permission::create(['name' => 'ujians.delete']);
+        Permission::create(['name' => 'ujian.index']);
+        Permission::create(['name' => 'ujian.create']);
+        Permission::create(['name' => 'ujian.edit']);
+        Permission::create(['name' => 'ujian.delete']);
 
         //permission for subjects
         Permission::create(['name' => 'subjeks.index']);

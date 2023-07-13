@@ -16,9 +16,11 @@
     <div class="container-fluid">
         <div class="card card-default">
             <div class="card-body">
+                @hasanyrole('panitia|admin')
                 <button class="btn btn-primary" data-toggle="modal" data-target="#tambahLowonganModal"
                     id="createNewLowongan">Tambah Data</button>
                 <hr>
+                @endhasanyrole
                 <table id="table-data" class="table table-bordered">
                     <thead>
                         {{-- tambah data Lowongan --}}

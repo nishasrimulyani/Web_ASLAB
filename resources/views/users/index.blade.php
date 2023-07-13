@@ -16,10 +16,12 @@
     <div class="container-fluid">
         <div class="card card-default">
             <div class="card-body">
+                @hasanyrole('panitia|admin')
                 <a href="{{ route('users.create') }}"><button class="btn btn-primary">Tambah Data</button></a>
                 <hr>
+                @endhasanyrole
                    
-                    <div class="table-responsive">
+                    
                         <table class="table table-bordered">
                             <thead>
                             <tr style="text-align: center">
@@ -59,7 +61,7 @@
                             </tbody>
                         </table>
                         
-                    </div>
+                    
             </div>
         </div>
     </div>

@@ -15,6 +15,8 @@ use Illuminate\Database\Eloquent\Builder;
 
 class UjianController extends Controller
 {
+    
+
     public function index()
     {
         $exams = Ujian::latest()->when(request()->q, function($exams) {
@@ -189,7 +191,7 @@ class UjianController extends Controller
     public function peserta($id)
     {
         $exam = Ujian::findOrFail($id);
-        return view('ujian.student', compact('exam'));
+        return view('ujian.peserta', compact('exam'));
     }
 
     public function assign(Request $request, $id)

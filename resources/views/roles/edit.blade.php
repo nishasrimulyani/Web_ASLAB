@@ -1,21 +1,22 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
-@section('content')
-<div class="main-content">
-    <section class="section">
-        <div class="section-header">
-            <h1>Edit Role</h1>
+@section('main-content')
+    <?php
+    $params_id = null;
+
+    ?>
+    <div class="row mt-5">
+        <div class="col-lg-12 margin-tb">
+            <div class="float-start">
+                <h2>Ubah Role</h2>
+            </div>
         </div>
-
-        <div class="section-body">
-
-            <div class="card">
-                <div class="card-header">
-                    <h4><i class="fas fa-unlock"></i> Edit Role</h4>
-                </div>
-
-                <div class="card-body">
-                    <form action="{{ route('roles.update', $role->id) }}" method="POST" enctype="multipart/form-data">
+    </div>
+    <hr>
+    <div class="container-fluid">
+        <div class="card card-default">
+            <div class="card-body">
+            <form action="{{ route('roles.update', $role->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <div class="form-group">
@@ -48,9 +49,9 @@
                         <button class="btn btn-warning btn-reset" type="reset"><i class="fa fa-redo"></i> RESET</button>
 
                     </form>
-                </div>
+     
             </div>
         </div>
-    </section>
-</div>
-@stop
+    </div>
+@endsection
+
