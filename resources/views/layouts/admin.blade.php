@@ -108,6 +108,13 @@
             </a>
         </li>
 
+        <li class="nav-item {{ Nav::isRoute('datanilais.index') }} dropdown">
+            <a class="nav-link" href="{{ route('datanilais.index') }}">
+                <i class="fas fa-list-check"></i>
+                <span>{{ __('Data Nilai') }}</span>
+            </a>
+        </li>
+        
         <li class="nav-item {{ Nav::isRoute('profile') }} dropdown">
             <a class="nav-link" href="{{ route('profile') }}">
                 <i class="fas fa-list-check"></i>
@@ -115,7 +122,7 @@
             </a>
         </li>
 
-        <li class="nav-item {{ Nav::isRoute('biodatas.index') }} dropdown">
+        <li class="nav-item {{ Nav::isRoute('biodata.index') }} dropdown">
             <a class="nav-link" href="{{ route('biodata.index') }}">
                 <i class="fas fa-list-check"></i>
                 <span>{{ __('Biodata') }}</span>

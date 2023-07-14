@@ -11,6 +11,7 @@ use App\Http\Controllers\StorageController;
 use App\Http\Controllers\UjianController;
 use App\Http\Controllers\BiodataController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\DataNilaiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,7 +46,7 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/jenis/delete/{id}', [JenisSoalController::class, 'delete'])->middleware('auth');
 
     //Biodata
-    Route::resource('biodata', BiodataController::class);
+    Route::resource('biodata', BiodataController::class)->middleware('auth');
 
     //Lowongan
     Route::resource('lowongan', LowonganController::class)->middleware('auth');
@@ -87,4 +88,8 @@ Route::group(['middleware' => 'auth'], function(){
 
     //users
     Route::resource('users', UserController::class);
+    Route::get('/user/delete/{id}', [UserController::class, 'delete'])->middleware('auth');
+
+    //datanilais
+    Route::resource('datanilais', DataNilaiController::class);
 });

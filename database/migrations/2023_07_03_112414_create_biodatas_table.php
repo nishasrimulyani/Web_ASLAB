@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('link_cv');
             $table->string('link_lamaran');
             $table->string('link_gambar');
-            $table->foreignId('lowongan_id')->insgined();
+            $table->foreignId('lowongan_id')->references('id')->on('lowongans');
             $table->timestamps();
         });
     }

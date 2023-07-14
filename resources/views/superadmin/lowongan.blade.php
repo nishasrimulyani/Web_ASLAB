@@ -65,6 +65,7 @@
                 <table id="table-data" class="table table-bordered">
                 <thead>
                     <tr class="text-center">
+                        <th scope="col" >No</th>
                         <th>Nama Posisi</th>
                         <th>Jumlah Yang Dibutuhkan</th>
                         <th>Aksi</th>

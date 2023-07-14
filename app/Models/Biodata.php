@@ -18,4 +18,5 @@ class Biodata extends Model
     public function lowongan(){
         return $this->belongsTo(Lowongan::class);
     }
+
 }

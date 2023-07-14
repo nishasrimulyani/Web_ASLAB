@@ -41,21 +41,16 @@
                                                         id="data-nama" required />
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="data-username">Username</label>
-                                                    <input type="text"class="form-control" name="username"
-                                                        id="data-username" required />
+                                                    <label for="data-password">Kata Sandi</label>
+                                                    <input type="text"class="form-control" name="password"
+                                                        id="data-password" required />
                                                 </div>
-                                            <div class="form-group">
-                                                <label for="data-password">Kata Sandi</label>
-                                                <input type="text"class="form-control" name="password"
-                                                    id="data-password" required />
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary"
-                                                    data-dismiss="modal">Tutup</button>
-                                                <button type="submit" class="btn btn-primary" id="saveBtn"
-                                                    value="create">Kirim</button>
-                                            </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-dismiss="modal">Tutup</button>
+                                                    <button type="submit" class="btn btn-primary" id="saveBtn"
+                                                        value="create">Kirim</button>
+                                                </div>
                                         </form>
                                     </div>
                                 </div>
@@ -67,7 +62,6 @@
                 <thead>
                     <tr class="text-center">
                         <th>Nama</th>
-                        <th>Username</th>
                         <th>Password</th>
                         <th>Aksi</th>
                     </tr>
@@ -76,7 +70,6 @@
                 @foreach ($users as $user)
                     <tr style="text-align: center">
                         <td>{{ $user->nama }} </td>
-                        <td>{{ $user->username }}</td>
                         <td>{{ $user->password }} </td>
                         <td>
                             <div class="btn-group" role="group" aria-label="Basic example">
@@ -85,7 +78,6 @@
                                     onclick="updateConfirmation('{{ $user->id }}')" data-toggle="modal"
                                     data-id="{{ $user->id }}" data-target="#editPanitiaModal"
                                     data-nama="{{ $user->nama }}"
-                                    data-username="{{ $user->username }}"
                                     data-password="{{ $user->password }}"
                                     data-created_at="{{ $user->created_at }}">
                                     Edit
@@ -128,11 +120,7 @@
                                     <input type="text" class="form-control" name="nama" id="edit-nama"
                                         required />
                                 </div>
-                                <div class="form-group">
-                                    <label for="edit-username">Username</label>
-                                    <input type="text" class="form-control" name="username" id="edit-username"
-                                        required />
-                                </div>
+                                
                                 <div class="form-group">
                                     <label for="edit-password">Password</label>
                                     <input type="text" class="form-control" name="password"
@@ -207,7 +195,6 @@
         function updateConfirmation(id) {
             $("#edit-nama").val($(".editPanitia-" + id).attr("data-nama"))
             $("#edit-id").val($(".editPanitia-" + id).attr("data-id"))
-            $("#edit-username").val($(".editPanitia-" + id).attr("data-username"))
             $("#edit-password").val($(".editPanitia-" + id).attr("data-password"))
         }
 
@@ -216,7 +203,6 @@
                 data: {
                     _token: '{{ csrf_token() }}',
                     nama: $("#edit-nama").val(),
-                    username: $("#edit-username").val(),
                     password: $("#edit-password").val(),
                     id: $("#edit-id").val(),
                 },

@@ -51,9 +51,12 @@
                                         
                                         
                                         
-                                            <button onClick="Delete(this.id)" class="btn btn-sm btn-danger" id="{{ $user->id }}">
+                                            <a type="button" id="btn-hapus-soal"
+                                                class="btn btn-sm btn-danger hapusJenis-{{ $user->id }}"
+                                                onclick="return confirm('Apakah Kamu yakin?')"
+                                                href="{{ url('/user/delete/' . $user->id) }}">
                                                 <i class="fa fa-trash"></i>
-                                            </button>
+                                        </a>
                                       
                                     </td>
                                 </tr>

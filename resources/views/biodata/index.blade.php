@@ -121,7 +121,7 @@
 
                             <div class="form-group">
                                 <label>IPK<span class="small text-danger">*</span></label>
-                                <input type="text" name="ipk" value="{{ old('ipk') }}" placeholder="Nama" class="form-control @error('ipk') is-invalid @enderror">
+                                <input type="text" name="ipk" value="{{ old('ipk') }}" placeholder="" class="form-control @error('ipk') is-invalid @enderror">
 
                                 @error('ipk')
                                 <div class="invalid-feedback" style="display: block">
@@ -132,11 +132,14 @@
 
                             <div class="form-group">
                                 <label>Posisi Yang Dilamar</label>
+                                
                                 <select class="form-control select-lowongan @error('lowongan_id') is-invalid @enderror" name="lowongan_id">
                                     <option value="">- Pilih Lowongan -</option>
-                                    @foreach ($lowongans as $lowongan)
+                                    @if ($lowongans->lowongan instanceof Illuminate\Database\Eloquent\Collection)
+                                    @foreach ($lowongans->lowongan as $lowongan)
                                         <option value="{{ $lowongan->id }}">{{ $lowongan->nama_loker }}</option>
                                     @endforeach
+                                    @endif
                                 </select>
                                 @error('lowongan_id')
                                 <div class="invalid-feedback" style="display: block">

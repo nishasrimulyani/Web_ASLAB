@@ -19,7 +19,8 @@ class BiodataController extends Controller
     {
         $documents = Biodata::latest()->when(request()->q, function($documents) {
             $documents = $documents->where('nama', 'like', '%'. request()->q . '%');
-        })->paginate(10);
+        })->paginate(10)
+            ->toArray();
 
         $lowongans = new Lowongan();
 
@@ -37,6 +38,7 @@ class BiodataController extends Controller
     {
         $lowongans = Lowongan::latest()->get();
         return view('biodata.index', compact('lowongans'));
+        
         
     }
 

@@ -121,20 +121,18 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function delete($id)
     {
-        $user = User::findOrFail($id);
-        $user->delete();
+        $question = User::findOrFail($id);
+        $question->delete();
+
+        $notification = array(
+            'message' => 'Data Jenis Soal berhasil dihapus',
+            'alert-type' => 'success'
+        );
+         return redirect('users')->with($notification);
 
 
-        if($user){
-            return response()->json([
-                'status' => 'success'
-            ]);
-        }else{
-            return response()->json([
-                'status' => 'error'
-            ]);
-        }
+        
     }
 }
