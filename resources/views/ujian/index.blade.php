@@ -40,6 +40,7 @@
                             </thead>
                             <tbody>
                             @foreach ($exams as $no => $exam)
+
                                 <tr style="text-align: center">
                                     <th scope="row" style="text-align: center">{{ ++$no + ($exams->currentPage()-1) * $exams->perPage() }}</th>
                                     <td>{{ $exam->nama }}</td>
@@ -62,13 +63,13 @@
                                         <a href="{{ route('ujians.edit', $exam->id) }}" class="btn btn-sm btn-success">
                                             <i class="fa fa-pencil-alt"></i>
                                         </a>
-                                    
+
                                         @hasanyrole('panitia|admin')
                                         <a href="{{ route('ujians.peserta', $exam->id) }}" class="btn btn-sm btn-primary">
                                             <i class="fa fa-door-open"></i>
                                         </a>
                                         @endhasanyrole
-                                        
+
                                         <a type="button" id="btn-hapus-soal"
                                                 class="btn btn-sm btn-danger hapusJenis-{{ $exam->id }}"
                                                 onclick="return confirm('Apakah Kamu yakin?')"
@@ -79,7 +80,7 @@
                                 </tr>
                             @endforeach
                             </tbody>
-                        </table>    
+                        </table>
             </div>
         </div>
     </div>

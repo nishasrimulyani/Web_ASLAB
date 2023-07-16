@@ -28,14 +28,14 @@
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                                     <div class="form-group">
-                                        <input type="email" class="form-control form-control-user" name="email" placeholder="{{ __('E-Mail') }}" value="{{ old('email') }}" required autofocus>
+                                        <input type="email" class="form-control form-control-user" name="email" placeholder="{{ __('E-Mail') }}" required autofocus>
                                     </div>
 
                                     <div class="form-group">
                                         <input type="password" class="form-control form-control-user" name="password" placeholder="{{ __('Kata Sandi') }}" required>
                                     </div>
 
-                                    
+
 
                                     <div class="form-group">
                                         <button type="submit" class="btn btn-primary btn-user btn-block">
@@ -43,9 +43,9 @@
                                         </button>
                                     </div>
 
-                                    
 
-                                    
+
+
                                 </form>
 
                                 <hr>

@@ -17,9 +17,9 @@ class UserTableSeeder extends Seeder
     {
          //create data user
          $userCreate = User::create([
-            'nama'      => 'Admin',
-            'email'     => 'admin@gmail.com',
-            'password'  => bcrypt('password')
+            'nama'      => 'admin',
+            'email'     => 'admin@mail.com',
+            'password'  => bcrypt('12345678')
         ]);
 
         //assign permission to role
@@ -31,7 +31,7 @@ class UserTableSeeder extends Seeder
         //assign role with permission to user
         $user = User::find(1);
         $user->assignRole($role->name);
-        
+
     }
 
 }

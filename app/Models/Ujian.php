@@ -9,7 +9,11 @@ class Ujian extends Model
 {
     use HasFactory;
 
-    protected $guarded = [];
+    protected $guarded = ['id','nilai'];
+
+    protected $fillable = [
+        'nilai','catatan_jawaban'
+    ];
 
     public function users(){
         return $this->belongsToMany(User::class)->withPivot('catatan_jawaban', 'nilai')->withTimestamps();

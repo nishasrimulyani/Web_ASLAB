@@ -67,16 +67,13 @@ class User extends Authenticatable
     public function ujians(){
         return $this->belongsToMany(Ujian::class)->withPivot('catatan_jawaban', 'nilai')->withTimestamps();
      }
- 
+
      public function getName($id){
          return $this->where('id',$id)->value('nama');
      }
- 
+
      public function getScore($user_id, $ujian_id){
-         return $this->find($user_id)
-                     ->ujians
-                     ->find($ujian_id)
-                     ->pivot
-                     ->nilai;
+         return $this->find($user_id)->ujians()->value('nilai');
+        // return $user_id;
      }
 }
