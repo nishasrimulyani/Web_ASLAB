@@ -12,7 +12,7 @@ class Ujian extends Model
     protected $guarded = ['id','nilai'];
 
     protected $fillable = [
-        'nilai','catatan_jawaban'
+        'nama', 'waktu', 'total_soal', 'status', 'mulai', 'selesai', 'dibuat_oleh', 'nilai','catatan_jawaban'
     ];
 
     public function users(){
