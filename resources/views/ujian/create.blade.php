@@ -21,7 +21,13 @@
           <div class="col-12">
             <div class="form-group">
               <label>Nama Ujian</label>
-              <input type="text" name="nama" value="{{ old('nama') }}" class="form-control">
+              <select name="nama" id="nama_ujian" class="form-select">
+                <option hidden value="">Pilih Nama Ujian</option>
+                <option value="psikotest">Psikotest</option>
+                <option value="umum">Pengetahuan Umum</option>
+                <option value="minat">Minat</option>
+              </select>
+
               @error('nama')
               <div class="invalid-feedback" style="display: block">
                 {{ $message }}
