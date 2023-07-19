@@ -11,7 +11,7 @@ class LowonganController extends Controller
     public function index()
     {
         //$user = Auth::user();
-        $lowongans = Lowongan::all();
+        $lowongans = Lowongan::latest()->paginate(10);
         return view('superadmin.lowongan', compact('lowongans'));
     }
 

@@ -12,7 +12,7 @@
       <div class="card-header d-flex border-0 pt-6 pb-6 px-1" style="background: none">
         <div class="card-title">
           <h3 class="card-label text-capitalize m-0 p-0">
-            Data Panitia
+             Panitia
             <h6 class="d-block text-muted pt-2 font-size-sm m-0 p-0 fst-italic">
               Management Data Panitia
             </h6>
