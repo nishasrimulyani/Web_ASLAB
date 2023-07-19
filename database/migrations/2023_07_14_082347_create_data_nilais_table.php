@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('data_nilais', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('id_user');
+            $table->integer('nilai_pengetahuan')->nullable();
+            $table->integer('nilai_minat')->nullable();
+            $table->integer('nilai_psikotest')->nullable();
+            $table->integer('nilai_wawancara')->nullable();
             $table->timestamps();
         });
     }
