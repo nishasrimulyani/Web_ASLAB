@@ -125,6 +125,7 @@
   </div>
 </div>
 
+{{--  Modal Detail  --}}
 <div class="modal fade" id="modalDetailSoal" tabindex="-1" aria-labelledby="modalDetailSoalLabel"
   aria-hidden="true">
   <div class="modal-dialog modal-xl">
@@ -254,6 +255,7 @@
   </div>
 </div>
 
+{{--  Modal Edit  --}}
 <div class="modal fade" id="modalEditSoal" tabindex="-1" aria-labelledby="modalEditSoalLabel"
   aria-hidden="true">
   <div class="modal-dialog modal-xl">
@@ -403,7 +405,7 @@
                   </div>
                 </div>
                 <div class="modal-footer mt-3">
-                  <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Tutup</button>
                   <button class="btn btn-primary mr-1 btn-submit btn-sm" type="submit">
                     SIMPAN
                   </button>
