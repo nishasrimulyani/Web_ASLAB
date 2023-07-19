@@ -35,14 +35,15 @@
               </tr>
             </thead>
             <tbody>
+              @php $i = 1; @endphp
               @foreach ($datanilai as $no => $row)
                 <tr>
-                  <td style="text-align: center">{{ ++$no + ($row->currentPage()-1) * $row->perPage() }}</td>
+                  <td>{{ $i++ }}</td>
                   <td>{{ $row->nama_user }}</td>
                   <td>{{ $row->nilai_minat }}</td>
                   <td>{{ $row->nilai_pengetahuan }}</td>
                   <td>{{ $row->nilai_psikotest }}</td>
-                  <td>{{ $row->nilai_wawancara }}</td>
+                  <td>{{ ($row->nilai_wawancara == null) ? '-' : $row->nilai_wawancara }}</td>
                   @hasanyrole('panitia|admin')
                   <td>
                     <a
@@ -54,7 +55,7 @@
                       data-nama-user={{ $row->nama_user }}
                       data-minat={{ $row->nilai_minat }}
                       data-pengetahuan={{ $row->nilai_pengetahuan }}
-                      data-psikotes={{ $row->nilai_psikotest }}
+                      data-psikotest={{ $row->nilai_psikotest }}
                       data-wawancara={{ $row->nilai_wawancara }}
                     >
                       <i class="fa-solid fa-pen-to-square"></i>
@@ -100,31 +101,31 @@
                   <div class="col-12">
                     <div class="form-group">
                       <label for="data-nama_user">Nama Peserta</label>
-                      <input type="text" class="form-control" placeholder="Masukkan Nama Peserta" name="nama_user" id="data-nama-user" required disabled />
+                      <input type="text" class="form-control" placeholder="Masukkan Nama Peserta" name="nama_user" id="data-nama-user" required readonly />
                     </div>
                   </div>
                   <div class="col-6">
                     <div class="form-group">
                       <label for="data-minat">Nilai Minat</label>
-                      <input type="number" class="form-control" placeholder="Masukkan Nilai Minat" name="minat" id="data-minat" required />
+                      <input type="number" min="1" class="form-control" placeholder="Masukkan Nilai Minat" name="minat" id="data-minat" required readonly/>
                     </div>
                   </div>
                   <div class="col-6">
                     <div class="form-group">
                       <label for="data-pengetahuan">Nilai Pengetahuan</label>
-                      <input type="number" class="form-control" placeholder="Masukkan Nilai Pengetahuan" name="pengetahuan" id="data-pengetahuan" required />
+                      <input type="number" min="1" class="form-control" placeholder="Masukkan Nilai Pengetahuan" name="pengetahuan" id="data-pengetahuan" required readonly/>
                     </div>
                   </div>
                   <div class="col-6">
                     <div class="form-group">
                       <label for="data-psikotes">Nilai Psikotes</label>
-                      <input type="number" class="form-control" placeholder="Masukkan Nilai Psikotes" name="psikotes" id="data-psikotes" required />
+                      <input type="number" min="1" class="form-control" placeholder="Masukkan Nilai Psikotes" name="psikotes" id="data-psikotest" required readonly/>
                     </div>
                   </div>
                   <div class="col-6">
                     <div class="form-group">
                       <label for="data-wawancara">Nilai Wawancara</label>
-                      <input type="number" class="form-control" placeholder="Masukkan Nilai Wawancara" name="wawancara" id="data-wawancara" required />
+                      <input type="number" min="1" class="form-control" placeholder="Masukkan Nilai Wawancara" name="wawancara" id="data-wawancara" required />
                     </div>
                   </div>
                 </div>
@@ -148,22 +149,22 @@
     $('.btn-edit').each(function() {
       $(this).on('click', function() {
         var id = $(this).data('id');
-        var nama = $(this).data('nama_user');
-        var minat = $(this).data('nilai_minat');
-        var pengetahuan = $(this).data('nilai_pengetahuan');
-        var psikotes = $(this).data('nilai_psikotest');
-        var wawancara = $(this).data('nilai_wawancara');
+        var nama = $(this).data('nama-user');
+        var minat = $(this).data('minat');
+        var pengetahuan = $(this).data('pengetahuan');
+        var psikotes = $(this).data('psikotest');
+        var wawancara = $(this).data('wawancara');
 
         $("#data-nama-user").val(nama)
         $("#data-minat").val(minat)
         $("#data-pengetahuan").val(pengetahuan)
-        $("#data-psikotest").text(psikotes);
+        $("#data-psikotest").val(psikotes);
         $("#data-wawancara").val(wawancara);
         $('#formEditNilai').on('submit', function(e) {
           e.preventDefault();
 
           var formAction = $(this).attr('action');
-          var appendedString = '{{ route('datanilais.update', '$id') }}';
+          // var appendedString = '{{ url('datanilais/update') }}/';
           var newAction = formAction + appendedString;
           $(this).attr('action', newAction);
 
