@@ -33,11 +33,7 @@
                     @elseif(now() > $ujian->selesai)
                         <a onclick="goBack()" class="btn btn-danger  btn-block" role="button" aria-pressed="true">Ujian Sudah Ditutup - Kembali</a>
                     @endif
-            </div>
-           
-                    
-        
-            
+            </div> 
         </div>
     </div>
 
