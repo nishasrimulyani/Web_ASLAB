@@ -3,12 +3,11 @@
 @section('main-content')
 <?php
     $params_id = null;
-
-    ?>
+?>
 <div class="container-fluid px-3">
   <div class="row mt-5">
     <div class="col-lg-12 margin-tb">
-      <h2 class="m-0">Buat Ujian</h2>
+      <h2 class="m-0">Tambah Ujian</h2>
     </div>
   </div>
   <hr>
@@ -29,7 +28,7 @@
               </select>
 
               @error('nama')
-              <div class="invalid-feedback" style="display: block">
+              <div class="invalid-feedback font-italic fst-italic" style="display: block">
                 {{ $message }}
               </div>
               @enderror
@@ -43,7 +42,7 @@
                 <span class="input-group-text">menit</span>
 
                 @error('waktu')
-                <div class="invalid-feedback" style="display: block">
+                <div class="invalid-feedback font-italic fst-italic" style="display: block">
                   {{ $message }}
                 </div>
                 @enderror
@@ -58,7 +57,7 @@
                 <span class="input-group-text">soal</span>
 
                 @error('total_soal')
-                <div class="invalid-feedback" style="display: block">
+                <div class="invalid-feedback font-italic fst-italic" style="display: block">
                   {{ $message }}
                 </div>
                 @enderror
@@ -71,7 +70,7 @@
               <input type="datetime-local" name="mulai" value="<?= date('Y-m-d', time()); ?>" class="form-control @error('mulai') is-invalid @enderror">
 
               @error('mulai')
-              <div class="invalid-feedback" style="display: block">
+              <div class="invalid-feedback font-italic fst-italic" style="display: block">
                 {{ $message }}
               </div>
               @enderror
@@ -83,7 +82,7 @@
               <input type="datetime-local" name="selesai" value="<?= date('Y-m-d', time()); ?>" class="form-control @error('selesai') is-invalid @enderror">
 
               @error('selesai')
-              <div class="invalid-feedback" style="display: block">
+              <div class="invalid-feedback font-italic fst-italic" style="display: block">
                 {{ $message }}
               </div>
               @enderror
@@ -97,16 +96,12 @@
 
     <hr>
     <div class="d-flex justify-content-end mt-3">
-      {{-- <div class="col-1">  --}}
       <button class="btn btn-outline-danger btn-reset mr-2" type="reset">
         RESET
       </button>
-      {{-- </div>  --}}
-      {{-- <div class="col-1">  --}}
       <button class="btn btn-primary mr-1 btn-submit" type="submit">
         SIMPAN
       </button>
-      {{-- </div>  --}}
     </div>
   </form>
 </div>
