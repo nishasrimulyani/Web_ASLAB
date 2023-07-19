@@ -12,6 +12,7 @@ class DataPanitiaController extends Controller
     {
         //$user = Auth::user();
         $users = User::all();
+        // dd($users);
         return view('superadmin.datapanitia', compact('users'));
     }
 
