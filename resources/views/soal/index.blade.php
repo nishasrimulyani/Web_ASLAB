@@ -44,7 +44,7 @@
                 <th>Pilihan D</th>
                 <th>Aksi</th>
               </tr>
-            </thead
+            </thead>
             <tbody>
               @foreach ($questions as $no => $question)
               <tr>
@@ -484,7 +484,7 @@
           $(this).attr('action', newAction);
 
           this.submit();
-      });
+        });
       })
     })
 </script>
