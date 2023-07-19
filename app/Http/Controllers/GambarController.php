@@ -27,7 +27,7 @@ class GambarController extends Controller
     {
         $this->validate($request, [
             'judul'     => 'required',
-            'image'     => 'required|mimes:jpg,bmp,png',
+            'image'     => 'required|mimes:jpeg,jpg,bmp,png',
             'caption'   => 'required'
         ]);
 
@@ -67,6 +67,6 @@ class GambarController extends Controller
             'alert-type' => 'success'
         );
          return redirect('gambars')->with($notification);
-        
+
     }
 }
