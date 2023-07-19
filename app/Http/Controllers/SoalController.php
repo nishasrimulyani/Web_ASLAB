@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 
 class SoalController extends Controller
 {
-   
+
 
     /**
      * Display a listing of the resource.
@@ -28,7 +28,10 @@ class SoalController extends Controller
         $image = new Gambar();
         $user = new User();
 
-        return view('soal.index', compact('questions', 'subject', 'image', 'user'));
+        $selectSubject = JenisSoal::latest()->get();
+        $selectImage = Gambar::latest()->get();
+
+        return view('soal.index', compact('questions', 'subject', 'image', 'user', 'selectSubject', 'selectImage'));
     }
 
     /**
@@ -64,7 +67,7 @@ class SoalController extends Controller
 
         $question = Soal::create([
             'jenis_id'    => $request->input('jenis_id'),
-            'detail'        => $request->input('detail'),
+            'detail'        => htmlspecialchars($request->input('detail')),
             'option_A'      => $request->input('option_A'),
             'option_B'      => $request->input('option_B'),
             'option_C'      => $request->input('option_C'),
