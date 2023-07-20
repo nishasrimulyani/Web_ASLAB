@@ -80,6 +80,8 @@ Route::group(['middleware' => 'auth'], function(){
         Route::put('ujians/assign/{id}', [UjianController::class, 'assign'])->name('ujians.assign');
         Route::get('/ujians/review/{user_id}/{ujian_id}', [UjianController::class, 'review'])->name('ujians.review');
 
+    // DataNilai
+    Route::post('/nilai/update/{id}', [DataNilaiController::class, 'update'])->middleware('auth');
     //Permission
     Route::resource('permissions', PermissionController::class);
 

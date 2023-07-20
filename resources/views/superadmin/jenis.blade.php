@@ -159,6 +159,7 @@
     </div>
   </div>
 </div>
+
 <div class="modal fade" id="tambahJenisModal" tabindex="-1" aria-labelledby="exampleModalLabel"
 aria-hidden="true">
 <div class="modal-dialog">
@@ -254,40 +255,44 @@ aria-hidden="true">
                         `;
                         $('#notifikasi').append(notifikasi); 
 
-                      
-                    },
-                    error: function(response) {
-                        console.log('Error:', response);
-                        $('#saveBtn').html('Save Changes');
-                    }
-                });
-                $('#tambahJenisModal').modal('hide');
-                table.load(document.URL + ' #table-data');
-                // location.reload();
-            });
+                      setTimeout(function() {
+                        $('#successAlert').alert('close');
+                      }, 2000);
+                      },
+                      error: function(response) {
+                          console.log('Error:', response);
+                          $('#saveBtn').html('Save Changes');
+                      }
+                  });
+                  $('#tambahJenisModal').modal('hide');
+                  // table.load(document.URL + ' #table-data');
+                  location.reload();
+              });
 
-            // Update
-            $('#editJenisForm').submit(function(e) {
-                e.preventDefault();
-                var id = $('#edit_id').val();
-                // $(this).html('Mengirim..');
-                var table = $('#table-data');
-                $.ajax({                   
-                    url: "{{ url('jenis/update') }}/"+id+"",
-                    data: $(this).serializeArray(),
-                    type: "post",
-                    dataType: 'json',
-                    success: function(response) {
-                        $('#editJenisForm').trigger("reset"); 
-                        var notifikasi = `
-                        <div class="alert alert-success alert-dismissible fade show" id="successAlert" role="alert">
-                          ${response.message}
-                          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
-                        `;
-                        $('#notifikasi').append(notifikasi); 
+              // Update
+              $('#editJenisForm').submit(function(e) {
+                  e.preventDefault();
+                  var id = $('#edit_id').val();
+                  // $(this).html('Mengirim..');
+                  var table = $('#table-data');
+                  $.ajax({                   
+                      url: "{{ url('jenis/update') }}/"+id+"",
+                      data: $(this).serializeArray(),
+                      type: "post",
+                      dataType: 'json',
+                      success: function(response) {
+                          $('#editJenisForm').trigger("reset"); 
+                          var notifikasi = `
+                          <div class="alert alert-success alert-dismissible fade show" id="successAlert" role="alert">
+                            ${response.message}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                          </div>
+                          `;
+                          $('#notifikasi').append(notifikasi); 
 
-                                   
+                          setTimeout(function() {
+                            $('#successAlert').alert('close');
+                          }, 2000);           
                     },
                     error: function(response) {
                         console.log('Error:', response);

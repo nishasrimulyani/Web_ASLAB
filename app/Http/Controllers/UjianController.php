@@ -11,30 +11,40 @@ use App\Models\Soal;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Database\Eloquent\Builder;
-
+use DB;
 
 class UjianController extends Controller
 {
-    
-
     public function index()
     {
         $exams = Ujian::latest()->when(request()->q, function($exams) {
             $exams = $exams->where('nama', 'like', '%'. request()->q . '%');
-        })->paginate(10);
+        })
+        ->join('jenis_soals as b', 'ujians.id_jenis', '=', 'b.id')
+        ->select('ujians.*', 'b.nama_soal as nama')
+        ->paginate(10);
         $currentUser = User::findOrFail(Auth()->id());
         if($currentUser->hasRole('admin')){
             $exams = Ujian::latest()->when(request()->q, function($exams) {
                 $exams = $exams->where('nama', 'like', '%'. request()->q . '%');
-            })->paginate(10);
+            })
+            ->join('jenis_soals as b', 'ujians.id_jenis', '=', 'b.id')
+            ->select('ujians.*', 'b.nama_soal as nama')
+            ->paginate(10);
         }elseif($currentUser->hasRole('peserta')){
             $exams = Ujian::whereHas('users', function (Builder $query) {
                 $query->where('user_id', Auth()->id());
-            })->paginate(10);
+            })
+            ->join('jenis_soals as b', 'ujians.id_jenis', '=', 'b.id')
+            ->select('ujians.*', 'b.nama_soal as nama')
+            ->paginate(10);
         }elseif($currentUser->hasRole('panitia')){
             $exams = Ujian::where('dibuat_oleh', Auth()->id())->latest()->when(request()->q, function($exams) {
                 $exams = $exams->where('dibuat_oleh', Auth()->id())->where('nama', 'like', '%'. request()->q . '%');
-            })->paginate(10);
+            })
+            ->join('jenis_soals as b', 'ujians.id_jenis', '=', 'b.id')
+            ->select('ujians.*', 'b.nama_soal as nama')
+            ->paginate(10);
         }
         
         $user = new User();
@@ -49,7 +59,8 @@ class UjianController extends Controller
      */
     public function create()
     {
-        return view('ujian.create');
+        $ujian = DB::table('jenis_soals')->get();
+        return view('ujian.create', compact('ujian'));
     }
 
     /**
@@ -61,7 +72,7 @@ class UjianController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'nama'          => 'required',
+            'id_jenis'          => 'required',
             'waktu'         => 'required',
             'total_soal'    => 'required',
             'mulai'         => 'required',
@@ -69,7 +80,7 @@ class UjianController extends Controller
         ]);
 
         $exam = Ujian::create([
-            'nama'          => $request->input('nama'),
+            'id_jenis'          => $request->input('id_jenis'),
             'waktu'         => $request->input('waktu'),
             'total_soal'    => $request->input('total_soal'),
             'status'        => 'Siap',
@@ -112,7 +123,7 @@ class UjianController extends Controller
     public function update(Request $request, ujian $exam)
     {
         $this->validate($request, [
-            'nama'          => 'required',
+            'id_jenis'          => 'required',
             'waktu'         => 'required',
             'total_soal'    => 'required',
             'mulai'         => 'required',
@@ -120,7 +131,7 @@ class UjianController extends Controller
         ]);
 
         $exam->update([
-            'nama'          => $request->input('nama'),
+            'id_jenis'          => $request->input('id_jenis'),
             'waktu'         => $request->input('waktu'),
             'total_soal'    => $request->input('total_soal'),
             'mulai'         => $request->input('mulai'),

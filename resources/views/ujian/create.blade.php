@@ -19,12 +19,12 @@
         <div class="row">
           <div class="col-12">
             <div class="form-group">
-              <label>Nama Ujian</label>
-              <select name="nama" id="nama_ujian" class="form-select">
+              <label>Nama Jenis Ujian</label>
+              <select name="id_jenis" id="nama_ujian" class="form-select">
                 <option hidden value="">Pilih Nama Ujian</option>
-                <option value="psikotest">Psikotest</option>
-                <option value="umum">Pengetahuan Umum</option>
-                <option value="minat">Minat</option>
+                @foreach($ujian as $row)
+                  <option value="{{$row->id}}">{{$row->nama_soal}}</option>
+                @endforeach
               </select>
 
               @error('nama')

@@ -7,6 +7,14 @@
 
 <div class="row">
   <div class="col-12">
+    <div id="notifikasi">
+      @if(Session::get('success'))
+      <div class="alert alert-success alert-dismissible fade show" id="successAlert" role="alert">
+        {{ Session::get('success') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+      @endif
+    </div>
     <div class="card d-flex border-0 p-0">
       <div class="card-header d-flex border-0 pt-6 pb-6 px-1" style="background: none">
        <div class="card-title">
@@ -84,7 +92,7 @@
 {{--  Modal Edit  --}}
 <div class="modal fade" id="modalEditNilai" tabindex="-1" aria-labelledby="modalEditNilaiLabel"
   aria-hidden="true">
-  <div class="modal-dialog modal-xl">
+  <div class="modal-dialog modal-md">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title text-capitalize" id="modalEditNilaiLabel">Edit Nilai</h5>
@@ -96,9 +104,11 @@
         <div class="card card-custom">
           <div class="card-body">
             <div class="row" style="min-height: 100%;">
-              <form id="formEditNilai" action="" method="POST" enctype="multipart/form-data">
+              <form id="formEditNilai" method="POST" enctype="multipart/form-data">
+                @csrf
                 <div class="row">
                   <div class="col-12">
+                    <input type="hidden" id="data-id">
                     <div class="form-group">
                       <label for="data-nama_user">Nama Peserta</label>
                       <input type="text" class="form-control" placeholder="Masukkan Nama Peserta" name="nama_user" id="data-nama-user" required readonly />
@@ -107,25 +117,25 @@
                   <div class="col-6">
                     <div class="form-group">
                       <label for="data-minat">Nilai Minat</label>
-                      <input type="number" min="1" class="form-control" placeholder="Masukkan Nilai Minat" name="minat" id="data-minat" required readonly/>
+                      <input type="number" min="1" class="form-control" placeholder="Masukkan Nilai Minat" name="nilai_minat" id="data-minat" required readonly/>
                     </div>
                   </div>
                   <div class="col-6">
                     <div class="form-group">
                       <label for="data-pengetahuan">Nilai Pengetahuan</label>
-                      <input type="number" min="1" class="form-control" placeholder="Masukkan Nilai Pengetahuan" name="pengetahuan" id="data-pengetahuan" required readonly/>
+                      <input type="number" min="1" class="form-control" placeholder="Masukkan Nilai Pengetahuan" name="nilai_pengetahuan" id="data-pengetahuan" required readonly/>
                     </div>
                   </div>
                   <div class="col-6">
                     <div class="form-group">
                       <label for="data-psikotes">Nilai Psikotes</label>
-                      <input type="number" min="1" class="form-control" placeholder="Masukkan Nilai Psikotes" name="psikotes" id="data-psikotest" required readonly/>
+                      <input type="number" min="1" class="form-control" placeholder="Masukkan Nilai Psikotes" name="nilai_psikotes" id="data-psikotest" required readonly/>
                     </div>
                   </div>
                   <div class="col-6">
                     <div class="form-group">
                       <label for="data-wawancara">Nilai Wawancara</label>
-                      <input type="number" min="1" class="form-control" placeholder="Masukkan Nilai Wawancara" name="wawancara" id="data-wawancara" required />
+                      <input type="number" min="1" class="form-control" placeholder="Masukkan Nilai Wawancara" name="nilai_wawancara" id="data-wawancara" required />
                     </div>
                   </div>
                 </div>
@@ -155,20 +165,44 @@
         var psikotes = $(this).data('psikotest');
         var wawancara = $(this).data('wawancara');
 
+        $('#data-id').val(id);
         $("#data-nama-user").val(nama)
         $("#data-minat").val(minat)
         $("#data-pengetahuan").val(pengetahuan)
         $("#data-psikotest").val(psikotes);
         $("#data-wawancara").val(wawancara);
+        
         $('#formEditNilai').on('submit', function(e) {
           e.preventDefault();
+          var id = $('#data-id').val();
+          var nilai_wawancara = $('#data-wawancara').val();
+          var table = $('#table-data');
+            $.ajax({                   
+              url: "{{ url('nilai/update') }}/"+id+"",
+              data: $(this).serializeArray(),
+              type: "post",
+              dataType: 'json',
+              success: function(response) {
+                $('#modalEditNilai').trigger("reset"); 
+                var notifikasi = `
+                <div class="alert alert-success alert-dismissible fade show" id="successAlert" role="alert">
+                  ${response.message}
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                `;
+                $('#notifikasi').append(notifikasi); 
 
-          var formAction = $(this).attr('action');
-          // var appendedString = '{{ url('datanilais/update') }}/';
-          var newAction = formAction + appendedString;
-          $(this).attr('action', newAction);
-
-          this.submit();
+                setTimeout(function() {
+                  $('#successAlert').alert('close');
+                }, 2000);           
+            },
+            error: function(response) {
+                console.log('Error:', response);
+                $('#saveBtn').html('Save Changes');
+            }
+          });
+          $('#modalEditNilai').modal('hide');
+          table.load(document.URL + ' #table-data');
         });
       });
     });
