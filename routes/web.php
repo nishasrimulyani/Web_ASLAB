@@ -42,7 +42,7 @@ Route::get('/about', function () {
 Route::group(['middleware' => 'auth'], function(){
     //Jenis Soal
     Route::resource('jenis', JenisSoalController::class)->middleware('auth');
-    Route::post('/jenis/update', 'JenisSoalController@update');
+    Route::post('/jenis/update/{id}', 'JenisSoalController@update');
     Route::get('/jenis/delete/{id}', [JenisSoalController::class, 'delete'])->middleware('auth');
 
     //Biodata

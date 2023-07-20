@@ -16,7 +16,6 @@ class JenisSoalController extends Controller
     }
 
     public function store(Request $request){
-
         $validate = $request->all([
             'nama_soal' => 'required|max255',
             'jumlah_soal' => 'required',
@@ -40,8 +39,9 @@ class JenisSoalController extends Controller
         ]);
     }
 
-    public function update(Request $req){
-        $jenis_soals = JenisSoal::where("id",$req->get('id'))->first();
+    public function update(Request $req, $id){
+        $jenis_soals = JenisSoal::findOrFail($id);
+        
         $validate = $req->validate([
             'nama_soal' => 'required',
             'jumlah_soal' => 'required',
@@ -56,14 +56,14 @@ class JenisSoalController extends Controller
         $jenis_soals->total_nilai = $req->total_nilai;
         $jenis_soals->passing_grade = $req->passing_grade;
 
-        $jenis_soals->save();
+        $jenis_soals->update();
 
         $notification = array(
             'message' => 'Data Jenis Soal berhasil diubah',
             'alert-type' => 'success'
         );
 
-        return redirect('jenis')->with($notification);
+        return response()->json($notification);
     }
 
     public function delete($id){
@@ -75,6 +75,6 @@ class JenisSoalController extends Controller
             'alert-type' => 'success'
         );
 
-        return redirect('jenis')->with($notification);
+        return redirect('jenis')->with('success', 'Data Jenis Soal berhasil dihapus');
         }
 }
