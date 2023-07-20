@@ -9,6 +9,8 @@ class DataNilai extends Model
 {
     use HasFactory;
 
+    protected $table = 'data_nilais';
+    
     protected $guarded = [];
     protected $fillable = [
         'id_user', 'nilai_pengetahuan', 'nilai_minat', 'nilai_psikotest', 'nilai_wawancara'

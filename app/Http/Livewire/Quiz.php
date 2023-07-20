@@ -10,6 +10,7 @@ use App\Models\Soal;
 use Livewire\WithPagination;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Database\Eloquent\Builder;
+use DB;
 
 class Quiz extends Component
 {
@@ -58,11 +59,13 @@ class Quiz extends Component
                 $userAnswer = "";
                 $rightAnswer = Soal::findOrFail($key)->jawaban;
                 $userAnswer = substr($value, strpos($value,'-')+1);
-                $bobot = 100 / $this->total_soal;
+                $bobot = 100 / count($this->selectedAnswers);
                 if($userAnswer == $rightAnswer){
                     $score = $score + $bobot;
+                    $score = abs(round($score));
                 }
             }
+
         }else{
             $score = 0;
         }
@@ -73,11 +76,97 @@ class Quiz extends Component
         $user_exam = $user->whereHas('ujians', function (Builder $query) {
             $query->where('ujian_id',$this->ujian_id)->where('user_id',$this->user_id);
         })->count();
+
+        // Cek jenis ujian
+        $cek_nilai = DB::table('ujians as a')
+            ->join('jenis_soals as b', 'a.id_jenis', '=', 'b.id')
+            ->select('b.nama_soal')
+            ->where('a.id', $this->ujian_id)
+            ->first();
+        
+        $data_nilai = strtolower(str_replace(' ', '_', $cek_nilai->nama_soal));
+
         if($user_exam == 0)
         {
             $user->ujians()->attach($this->ujian_id, ['catatan_jawaban' => $selectedAnswers_str, 'nilai' => $score]);
+            
+            // Cek user
+            $cek_user = DB::table('data_nilais')
+                        ->where('id_user', '=', $this->user_id)
+                        ->first();
+            
+            if($cek_user)
+            {
+                if($data_nilai == 'pengetahuan_umum')
+                {
+                    DB::table('data_nilais')
+                    ->where('id_user', '=', $cek_user->id_user)
+                    ->update([
+                        'nilai_pengetahuan' => $score
+                    ]);
+                } else if($data_nilai == 'pengetahuan_minat')
+                {
+                    DB::table('data_nilais')
+                    ->where('id_user', '=', $cek_user->id_user)
+                    ->update([
+                        'nilai_minat' => $score
+                    ]);
+                } else if($data_nilai == 'psikotest')
+                {
+                    DB::table('data_nilais')
+                    ->where('id_user', '=', $cek_user->id_user)
+                    ->update([
+                        'nilai_psikotest' => $score
+                    ]);
+                }
+            } else {
+                if($data_nilai == 'pengetahuan_umum')
+                {
+                    DB::table('data_nilais')->insert([
+                        'id_user' => $this->user_id,
+                        'nilai_pengetahuan' => $score
+                    ]);
+                } else if($data_nilai == 'pengetahuan_minat')
+                {
+                    DB::table('data_nilais')->insert([
+                        'id_user' => $this->user_id,
+                        'nilai_minat' => $score
+                    ]);
+                } else if($data_nilai == 'psikotest')
+                {
+                    DB::table('data_nilais')->insert([
+                        'id_user' => $this->user_id,
+                        'nilai_psikotest' => $score
+                    ]);
+                }
+            }
+           
         } else{
             $user->ujians()->updateExistingPivot($this->ujian_id, ['catatan_jawaban' => $selectedAnswers_str, 'nilai' => $score]);
+            
+
+            if($data_nilai == 'pengetahuan_umum')
+            {
+                DB::table('data_nilais')
+                ->where('id_user', '=', $this->user_id)
+                ->update([
+                    'nilai_pengetahuan' => $score
+                ]);
+            } else if($data_nilai == 'pengetahuan_minat')
+            {
+                DB::table('data_nilais')
+                ->where('id_user', '=', $this->user_id)
+                ->update([
+                    'nilai_minat' => $score
+                ]);
+            } else if($data_nilai == 'psikotest')
+            {
+                DB::table('data_nilais')
+                ->where('id_user', '=', $this->user_id)
+                ->update([
+                    'nilai_psikotest' => $score
+                ]);
+            }
         }
         
         return redirect()->route('ujians.result', [$score, $this->user_id, $this->ujian_id]);
