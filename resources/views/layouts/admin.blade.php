@@ -41,7 +41,7 @@
       <!-- Sidebar - Brand -->
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
         <div class="sidebar-brand-icon">
-          <img src="assets/img/logo_lab.png" alt="" style="width:50px">
+          <img src="{{asset('assets/img/logo_lab.png')}}" alt="" style="width:50px">
         </div>
         <div class="sidebar-brand-text mx-3">LABTIF</div>
       </a>

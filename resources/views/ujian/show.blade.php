@@ -26,11 +26,15 @@
                         <li class="list-group-item">Ujian ditutup : {{ $ujian->selesai }}</li>
                     </ul>
                     <hr>
-                    @if(now() >= $ujian->mulai && now() <= $ujian->selesai)
+                    @php 
+                        $mulai = \Carbon\Carbon::parse($ujian->mulai);
+                        $selesai = \Carbon\Carbon::parse($ujian->selesai);
+                    @endphp
+                    @if(now() >= $mulai && $mulai <= $selesai)
                         <a href="{{ route('ujians.start', $ujian->id) }}" class="btn btn-primary btn-block" role="button" aria-pressed="true">Mulai</a>
-                    @elseif(now() < $ujian->mulai)
+                    @elseif(now() < $mulai)
                         <a onclick="goBack()" class="btn btn-warning  btn-block" role="button" aria-pressed="true">Ujian Belum Dibuka - Kembali</a>
-                    @elseif(now() > $ujian->selesai)
+                    @elseif(now() > $selesai)
                         <a onclick="goBack()" class="btn btn-danger  btn-block" role="button" aria-pressed="true">Ujian Sudah Ditutup - Kembali</a>
                     @endif
             </div> 
