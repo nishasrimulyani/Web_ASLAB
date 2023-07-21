@@ -36,7 +36,7 @@
         </div>
         @endhasanyrole
       </div>
-      <div class="card-body px-0">
+      <div class="card-body">
         <div class="table-responsive">
           <table id="table-data" class="table">
             <thead>
@@ -106,7 +106,7 @@
       </div>
       <div class="modal-body p-0 pb-0">
         <div class="card card-custom">
-          <div class="card-body px-0">
+          <div class="card-body">
             <div class="row">
               <form id="editJenisForm" method="post" enctype="multipart/form-data">
                 @csrf
@@ -172,7 +172,7 @@ aria-hidden="true">
     </div>
     <div class="modal-body p-0 pb-0">
       <div class="card card-custom">
-        <div class="card-body px-0">
+        <div class="card-body">
           <div class="row">
             <form id="jenisForm" method="post" enctype="multipart/form-data">
               @csrf

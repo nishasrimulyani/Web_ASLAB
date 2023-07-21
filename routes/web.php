@@ -12,7 +12,7 @@ use App\Http\Controllers\UjianController;
 use App\Http\Controllers\BiodataController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DataNilaiController;
-
+use App\Http\Controllers\AhpController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -94,4 +94,8 @@ Route::group(['middleware' => 'auth'], function(){
 
     //datanilais
     Route::resource('datanilais', DataNilaiController::class);
+
+    // Ahp
+    Route::resource('ahp', AhpController::class)->middleware('auth');
+    Route::post('/ahp/calculate-ranking', [AhpController::class, 'calculateRanking'])->middleware('auth');
 });

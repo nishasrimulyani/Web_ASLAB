@@ -21,10 +21,10 @@ class DataNilaiController extends Controller
     public function update(Request $request, $id)
     {
         $nilai = DataNilai::findOrFail($id);
-
-        // $validate = $request->validate([
-        //   'nilai_wawancara' => 'required'
-        // ]);
+      
+        $validate = $request->validate([
+          'nilai_wawancara' => 'required'
+        ]);
 
         $nilai->nilai_wawancara = $request->nilai_wawancara;
 
