@@ -117,6 +117,13 @@
         </a>
       </li>
 
+      <li class="nav-item {{ Nav::isRoute('ahp.index') }} dropdown">
+        <a class="nav-link" href="{{ route('ahp.index') }}">
+          <i class="fas fa-list-check"></i>
+          <span>{{ __('Perhitungan AHP') }}</span>
+        </a>
+      </li>
+
       <li class="nav-item {{ Nav::isRoute('profile') }} dropdown">
         <a class="nav-link" href="{{ route('profile') }}">
           <i class="fas fa-list-check"></i>

@@ -26,15 +26,15 @@
          </h3>
        </div>
       </div>
-      <div class="card-body px-0">
+      <div class="card-body">
         <div class="table-responsive">
           <table id="table-data" class="table">
             <thead>
               <tr class="text-uppercase">
                 <th style="text-align: center;width: 5%">No</th>
                 <th>Nama Peserta</th>
-                <th>Nilai Minat</th>
                 <th>Nilai Pengetahuan</th>
+                <th>Nilai Minat</th>
                 <th>Nilai Psikotest</th>
                 <th>Nilai Wawancara</th>
                 @hasanyrole('panitia|admin')
@@ -48,8 +48,8 @@
                 <tr>
                   <td style="text-align: center">{{ $i++ }}</td>
                   <td>{{ $row->nama_user }}</td>
-                  <td>{{ $row->nilai_minat }}</td>
                   <td>{{ $row->nilai_pengetahuan }}</td>
+                  <td>{{ $row->nilai_minat }}</td>
                   <td>{{ $row->nilai_psikotest }}</td>
                   <td>{{ ($row->nilai_wawancara == null) ? '-' : $row->nilai_wawancara }}</td>
                   @hasanyrole('panitia|admin')
@@ -102,7 +102,7 @@
       </div>
       <div class="modal-body p-0 pb-0">
         <div class="card card-custom">
-          <div class="card-body px-0">
+          <div class="card-body">
             <div class="row" style="min-height: 100%;">
               <form id="formEditNilai" method="POST" enctype="multipart/form-data">
                 @csrf
@@ -116,6 +116,7 @@
                         <strong class="data-nama-user">
                         </strong>
                       </p>
+                      <input type="hidden" id="data-id">
                       <input type="hidden" class="form-control" placeholder="Masukkan Nama Peserta" name="nama_user" id="data-nama-user" required readonly />
                     </div>
                   </div>
