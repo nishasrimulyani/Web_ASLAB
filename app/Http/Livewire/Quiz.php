@@ -21,12 +21,13 @@ class Quiz extends Component
     public $user_id;
     public $selectedAnswers = [];
     public $total_soal;
+    public $subject;
+    public $user;
     protected $listeners = ['endTimer' => 'submitAnswers'];
 
     public function mount($id)
     {
         $this->ujian_id = $id;
-        
     }
 
     public function questions()
@@ -39,8 +40,16 @@ class Quiz extends Component
             $questions = $exam->soals()->take($exam->total_soal)->paginate(1);
         } elseif($this->total_soal < $exam->total_soal ) {
             $questions = $exam->soals()->take($this->total_soal)->paginate(1);
-        } 
+        }
+
+        // dd($exam);
         return $questions;
+    }
+
+    public function user() {
+      $user = User::findOrFail(Auth()->id());
+
+      return $user;
     }
 
     public function answers($questionId, $option)
@@ -52,7 +61,7 @@ class Quiz extends Component
     {
         if(!empty($this->selectedAnswers))
         {
-            
+
             $score = 0;
             foreach($this->selectedAnswers as $key => $value)
             {
@@ -69,7 +78,7 @@ class Quiz extends Component
         }else{
             $score = 0;
         }
-        
+
         $selectedAnswers_str = json_encode($this->selectedAnswers);
         $this->user_id = Auth()->id();
         $user = User::findOrFail($this->user_id);
@@ -83,18 +92,18 @@ class Quiz extends Component
             ->select('b.nama_soal')
             ->where('a.id', $this->ujian_id)
             ->first();
-        
+
         $data_nilai = strtolower(str_replace(' ', '_', $cek_nilai->nama_soal));
 
         if($user_exam == 0)
         {
             $user->ujians()->attach($this->ujian_id, ['catatan_jawaban' => $selectedAnswers_str, 'nilai' => $score]);
-            
+
             // Cek user
             $cek_user = DB::table('data_nilais')
                         ->where('id_user', '=', $this->user_id)
                         ->first();
-            
+
             if($cek_user)
             {
                 if($data_nilai == 'pengetahuan_umum')
@@ -140,10 +149,10 @@ class Quiz extends Component
                     ]);
                 }
             }
-           
+
         } else{
             $user->ujians()->updateExistingPivot($this->ujian_id, ['catatan_jawaban' => $selectedAnswers_str, 'nilai' => $score]);
-            
+
 
             if($data_nilai == 'pengetahuan_umum')
             {
@@ -168,7 +177,7 @@ class Quiz extends Component
                 ]);
             }
         }
-        
+
         return redirect()->route('ujians.result', [$score, $this->user_id, $this->ujian_id]);
     }
 
