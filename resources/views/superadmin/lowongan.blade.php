@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.single-content')
 
 @section('main-content')
 <?php
@@ -28,7 +28,7 @@
         </div>
         @endhasanyrole
       </div>
-      <div class="card-body">
+      <div class="card-body px-0">
         <div class="table-responsive">
           <table id="table-data" class="table">
             <thead>

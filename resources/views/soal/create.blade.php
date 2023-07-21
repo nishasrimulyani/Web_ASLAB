@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.single-content')
 
 @section('main-content')
 
@@ -28,7 +28,7 @@
           </h3>
         </div>
       </div>
-      <div class="card-body">
+      <div class="card-body px-0">
         <form action="{{ route('soals.store') }}" method="POST" enctype="multipart/form-data">
           <div class="row">
             <div class="col-6 pl-0" style="min-height: 100%;">

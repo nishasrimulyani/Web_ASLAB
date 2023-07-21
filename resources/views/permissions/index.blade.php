@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.single-content')
 
 @section('main-content')
     <?php
@@ -15,7 +15,7 @@
     <hr>
     <div class="container-fluid">
         <div class="card card-default">
-            <div class="card-body">
+            <div class="card-body px-0">
                     <form action="{{ route('permissions.index') }}" method="GET">
                         <div class="form-group">
                             <div class="input-group mb-3">
@@ -47,7 +47,7 @@
                         </table>
                     </div>
                 </div>
-     
+
             </div>
         </div>
     </div>

@@ -1,14 +1,14 @@
 <div class="row">
   <div class="col-6">
-    <div class="card">
+    <div class="card" style="height: 100%">
       <div class="card-header">
         <h6 class="m-0">Soal yang tersedia</h6>
       </div>
-      <div class="card-body">
+      <div class="card-body px-0">
         <table id="table_id" class="table table-bordered table-hover">
           <thead>
             <tr>
-              <th>Pilih</th>
+              <th style="width: 5%">Pilih</th>
               <th>Jenis Soal</th>
               <th>Detail Soal</th>
             </tr>
@@ -16,8 +16,8 @@
           <tbody>
             @foreach ($questions as $question)
             <tr>
-              <td>
-                <div class="form-check form-check-inline">
+              <td style="width: 5%">
+                <div class="form-check form-check-inline d-flex">
                   <input class="form-check-input" wire:model="selectedQuestion" type="checkbox" name="questions[]" value="{{ $question->id }}" id="check-{{ $question->id }}">
                 </div>
               </td>
@@ -35,11 +35,11 @@
     </div>
   </div>
   <div class="col-6">
-    <div class="card">
+    <div class="card" style="height: 100%">
       <div class="card-header">
         <h6 class="m-0">Soal yang dipilih</h6>
       </div>
-      <div class="card-body">
+      <div class="card-body px-0">
         @if(isset($selectedQuestion))
         <div class="form-group">
           <table id="table_id" class="table table-bordered table-hover">

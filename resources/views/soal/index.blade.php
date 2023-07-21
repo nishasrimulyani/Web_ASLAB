@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.single-content')
 
 @section('main-content')
 <?php
@@ -30,7 +30,7 @@
         </div>
         @endhasanyrole
       </div>
-      <div class="card-body">
+      <div class="card-body px-0">
         <div class="table-responsive">
           <table id="table-data" class="table">
             <thead>
@@ -138,7 +138,7 @@
       </div>
       <div class="modal-body p-0 pb-0">
         <div class="card card-custom">
-          <div class="card-body">
+          <div class="card-body px-0">
             <div class="row" style="min-height: 100%;">
               <div class="col-6" style="min-height: 100%;">
                 <div class="row">
@@ -268,7 +268,7 @@
       </div>
       <div class="modal-body p-0 pb-0">
         <div class="card card-custom">
-          <div class="card-body">
+          <div class="card-body px-0">
             <div class="row" style="min-height: 100%;">
               <form id="formEditSoal" action="" method="POST" enctype="multipart/form-data">
                 <div class="row">

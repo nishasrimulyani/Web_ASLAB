@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.single-content')
 
 @section('main-content')
 <?php
@@ -27,7 +27,7 @@
           </div>
         </div>
       </div>
-      <div class="card-body">
+      <div class="card-body px-0">
         <div class="table-responsive">
           <table id="table-data" class="table">
             <thead>
@@ -93,7 +93,7 @@
       </div>
       <div class="modal-body p-0 pb-0">
         <div class="card card-custom">
-          <div class="card-body">
+          <div class="card-body px-0">
             <div class="row">
               <form method="post" enctype="multipart/form-data" name="panitiaFormUpdate" id="editForm">
                 <div class="row">

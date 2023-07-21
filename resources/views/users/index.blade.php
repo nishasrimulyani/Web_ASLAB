@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.single-content')
 
 @section('main-content')
     <?php
@@ -15,13 +15,13 @@
     <hr>
     <div class="container-fluid">
         <div class="card card-default">
-            <div class="card-body">
+            <div class="card-body px-0">
                 @hasanyrole('panitia|admin')
                 <a href="{{ route('users.create') }}"><button class="btn btn-primary">Tambah Data</button></a>
                 <hr>
                 @endhasanyrole
-                   
-                    
+
+
                         <table class="table table-bordered">
                             <thead>
                             <tr style="text-align: center">
@@ -44,27 +44,27 @@
                                         @endif
                                     </td>
                                     <td class="text-center">
-                                       
+
                                             <a href="{{ route('users.edit', $user->id) }}" class="btn btn-sm btn-primary">
                                                 <i class="fa fa-pencil-alt"></i>
                                             </a>
-                                        
-                                        
-                                        
+
+
+
                                             <a type="button" id="btn-hapus-soal"
                                                 class="btn btn-sm btn-danger hapusJenis-{{ $user->id }}"
                                                 onclick="return confirm('Apakah Kamu yakin?')"
                                                 href="{{ url('/user/delete/' . $user->id) }}">
                                                 <i class="fa fa-trash"></i>
                                         </a>
-                                      
+
                                     </td>
                                 </tr>
                             @endforeach
                             </tbody>
                         </table>
-                        
-                    
+
+
             </div>
         </div>
     </div>

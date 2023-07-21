@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.single-content')
 
 @section('main-content')
 
@@ -22,7 +22,7 @@
 
     <div class="row">
 
-        <!-- Earnings (Monthly) Card Example 
+        <!-- Earnings (Monthly) Card Example
         <div class="col-xl-3 col-md-6 mb-4">
             <div class="card border-left-primary shadow h-100 py-2">
                 <div class="card-body">
@@ -39,7 +39,7 @@
             </div>
         </div>
 
-         Earnings (Monthly) Card Example 
+         Earnings (Monthly) Card Example
         <div class="col-xl-3 col-md-6 mb-4">
             <div class="card border-left-success shadow h-100 py-2">
                 <div class="card-body">
@@ -82,7 +82,7 @@
             </div>
         </div>
 
-         Users 
+         Users
         <div class="col-xl-3 col-md-6 mb-4">
             <div class="card border-left-warning shadow h-100 py-2">
                 <div class="card-body">
@@ -105,7 +105,7 @@
         Content Column
         <div class="col-lg-6 mb-4">
 
-            Project Card Example 
+            Project Card Example
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
                     <h6 class="m-0 font-weight-bold text-primary">Projects</h6>
@@ -134,7 +134,7 @@
                 </div>
             </div>
 
-            Color System 
+            Color System
             <div class="row">
                 <div class="col-lg-6 mb-4">
                     <div class="card bg-primary text-white shadow">
@@ -190,7 +190,7 @@
 
         <div class="col-lg-6 mb-4">
 
-            Illustrations 
+            Illustrations
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
                     <h6 class="m-0 font-weight-bold text-primary">Illustrations</h6>
