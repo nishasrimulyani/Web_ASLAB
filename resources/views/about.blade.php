@@ -1,7 +1,7 @@
-@extends('layouts.admin')
+@extends('layouts.single-content')
 
 @section('main-content')
-    <!-- Page Heading 
+    <!-- Page Heading
     <h1 class="h3 mb-4 text-gray-800">{{ __('About') }}</h1>
 
     <div class="row justify-content-center">

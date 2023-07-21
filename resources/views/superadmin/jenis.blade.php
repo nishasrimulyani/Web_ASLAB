@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.single-content')
 
 @section('main-content')
 <?php
@@ -36,7 +36,7 @@
         </div>
         @endhasanyrole
       </div>
-      <div class="card-body">
+      <div class="card-body px-0">
         <div class="table-responsive">
           <table id="table-data" class="table">
             <thead>
@@ -48,7 +48,7 @@
                 <th>Passing Grade</th>
                 <th>Aksi</th>
               </tr>
-            </thead>  
+            </thead>
 
             @foreach ($jenis_soals as $jenis_soal)
             <tr>
@@ -106,7 +106,7 @@
       </div>
       <div class="modal-body p-0 pb-0">
         <div class="card card-custom">
-          <div class="card-body">
+          <div class="card-body px-0">
             <div class="row">
               <form id="editJenisForm" method="post" enctype="multipart/form-data">
                 @csrf
@@ -172,7 +172,7 @@ aria-hidden="true">
     </div>
     <div class="modal-body p-0 pb-0">
       <div class="card card-custom">
-        <div class="card-body">
+        <div class="card-body px-0">
           <div class="row">
             <form id="jenisForm" method="post" enctype="multipart/form-data">
               @csrf
@@ -232,15 +232,15 @@ aria-hidden="true">
         $(function() {
           setTimeout(function() {
             $('#successAlert').alert('close');
-          }, 2000);  
+          }, 2000);
             $('#jenisForm').submit(function(e) {
                 e.preventDefault();
                 // $(this).html('Mengirim..');
                 var table = $('#table-data');
-                $.ajax({                 
+                $.ajax({
                     url: "{{ route('jenis.store') }}",
                     type: "post",
-                    data: $('#jenisForm').serializeArray(),                   
+                    data: $('#jenisForm').serializeArray(),
                     dataType: 'json',
                     beforeSend: function(xhr) {
                       xhr.setRequestHeader('X-CSRF-TOKEN', $('meta[name="csrf-token"]').attr('content'));
@@ -253,7 +253,7 @@ aria-hidden="true">
                           <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>
                         `;
-                        $('#notifikasi').append(notifikasi); 
+                        $('#notifikasi').append(notifikasi);
 
                       setTimeout(function() {
                         $('#successAlert').alert('close');
@@ -275,24 +275,24 @@ aria-hidden="true">
                   var id = $('#edit_id').val();
                   // $(this).html('Mengirim..');
                   var table = $('#table-data');
-                  $.ajax({                   
+                  $.ajax({
                       url: "{{ url('jenis/update') }}/"+id+"",
                       data: $(this).serializeArray(),
                       type: "post",
                       dataType: 'json',
                       success: function(response) {
-                          $('#editJenisForm').trigger("reset"); 
+                          $('#editJenisForm').trigger("reset");
                           var notifikasi = `
                           <div class="alert alert-success alert-dismissible fade show" id="successAlert" role="alert">
                             ${response.message}
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                           </div>
                           `;
-                          $('#notifikasi').append(notifikasi); 
+                          $('#notifikasi').append(notifikasi);
 
                           setTimeout(function() {
                             $('#successAlert').alert('close');
-                          }, 2000);           
+                          }, 2000);
                     },
                     error: function(response) {
                         console.log('Error:', response);

@@ -46,7 +46,7 @@ class UjianController extends Controller
             ->select('ujians.*', 'b.nama_soal as nama')
             ->paginate(10);
         }
-        
+
         $user = new User();
 
         return view('ujian.index', compact('exams','user'));
@@ -109,7 +109,7 @@ class UjianController extends Controller
     public function edit(ujian $exam)
     {
         $questions = $exam->soals()->where('ujian_id', $exam->id)->get();
-        
+
         return view('ujian.edit', compact('exam', 'questions'));
     }
 
@@ -159,8 +159,9 @@ class UjianController extends Controller
     public function show(Ujian $ujian)
     {
         $questions = $ujian->soals()->where('ujian_id', $ujian->id)->get();
-        
-        return view('ujian.show', compact('ujian', 'questions'));
+        $subject = new JenisSoal();
+
+        return view('ujian.show', compact('ujian', 'questions', 'subject'));
     }
 
     /**
@@ -185,11 +186,15 @@ class UjianController extends Controller
     {
         $exam = Ujian::findOrFail($id);
         $exam_questions = $exam->soals;
+        $user = User::findOrFail(Auth()->id());
+
+        $subject = new JenisSoal();
 
         if ($exam_questions->count() == 0) {
             return back()->with(['error' => 'Belum ada Pertanyaan']);
         }
-        return view('ujian.start', compact('id'));
+        // dd($currentUser);
+        return view('ujian.start', compact('id', 'subject', 'user'));
     }
 
     public function result($score, $userId, $examId)

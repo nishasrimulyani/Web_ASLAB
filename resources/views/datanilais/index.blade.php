@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.single-content')
 
 @section('main-content')
 <?php
@@ -26,7 +26,7 @@
          </h3>
        </div>
       </div>
-      <div class="card-body">
+      <div class="card-body px-0">
         <div class="table-responsive">
           <table id="table-data" class="table">
             <thead>
@@ -46,7 +46,7 @@
               @php $i = 1; @endphp
               @foreach ($datanilai as $no => $row)
                 <tr>
-                  <td>{{ $i++ }}</td>
+                  <td style="text-align: center">{{ $i++ }}</td>
                   <td>{{ $row->nama_user }}</td>
                   <td>{{ $row->nilai_minat }}</td>
                   <td>{{ $row->nilai_pengetahuan }}</td>
@@ -102,37 +102,65 @@
       </div>
       <div class="modal-body p-0 pb-0">
         <div class="card card-custom">
-          <div class="card-body">
+          <div class="card-body px-0">
             <div class="row" style="min-height: 100%;">
               <form id="formEditNilai" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="row">
                   <div class="col-12">
-                    <input type="hidden" id="data-id">
                     <div class="form-group">
-                      <label for="data-nama_user">Nama Peserta</label>
-                      <input type="text" class="form-control" placeholder="Masukkan Nama Peserta" name="nama_user" id="data-nama-user" required readonly />
+                      <label class="p-0">
+                        <small>Nama Peserta :</small>
+                      </label>
+                      <p class="m-0 p-0">
+                        <strong class="data-nama-user">
+                        </strong>
+                      </p>
+                      <input type="hidden" class="form-control" placeholder="Masukkan Nama Peserta" name="nama_user" id="data-nama-user" required readonly />
                     </div>
                   </div>
-                  <div class="col-6">
+                </div>
+                <div class="row bg-body-secondary mx-0 py-md-3 py-5 rounded-sm">
+                  <div class="col-3">
                     <div class="form-group">
-                      <label for="data-minat">Nilai Minat</label>
-                      <input type="number" min="1" class="form-control" placeholder="Masukkan Nilai Minat" name="nilai_minat" id="data-minat" required readonly/>
+                      <label class="p-0">
+                        <small>Nilai Minat :</small>
+                      </label>
+                      <p class="m-0 p-0">
+                        <strong class="data-minat text-primary h5">
+                        </strong>
+                      </p>
+                      <input type="hidden" min="1" class="form-control" placeholder="Masukkan Nilai Minat" name="nilai_minat" id="data-minat" required readonly/>
                     </div>
                   </div>
-                  <div class="col-6">
+                  <div class="col-5">
                     <div class="form-group">
-                      <label for="data-pengetahuan">Nilai Pengetahuan</label>
-                      <input type="number" min="1" class="form-control" placeholder="Masukkan Nilai Pengetahuan" name="nilai_pengetahuan" id="data-pengetahuan" required readonly/>
+                      <label class="p-0">
+                        <small>Nilai Pengetahuan :</small>
+                      </label>
+                      <p class="m-0 p-0">
+                        <strong class="data-pengetahuan text-info h5">
+                        </strong>
+                      </p>
+                      <input type="hidden" min="1" class="form-control" placeholder="Masukkan Nilai Pengetahuan" name="nilai_pengetahuan" id="data-pengetahuan" required readonly >
                     </div>
                   </div>
-                  <div class="col-6">
+                  <div class="col-4">
                     <div class="form-group">
-                      <label for="data-psikotes">Nilai Psikotes</label>
-                      <input type="number" min="1" class="form-control" placeholder="Masukkan Nilai Psikotes" name="nilai_psikotes" id="data-psikotest" required readonly/>
+                      <label class="p-0">
+                        <small>Nilai Psikotes :</small>
+                      </label>
+                      <p class="m-0 p-0">
+                        <strong class="data-psikotest text-success h5">
+                        </strong>
+                      </p>
+                      <input type="hidden" min="1" class="form-control" placeholder="Masukkan Nilai Psikotes" name="nilai_psikotes" id="data-psikotest" required readonly/>
                     </div>
                   </div>
-                  <div class="col-6">
+                </div>
+                <div class="row">
+                  <div class="col-12">
+                    <hr>
                     <div class="form-group">
                       <label for="data-wawancara">Nilai Wawancara</label>
                       <input type="number" min="1" class="form-control" placeholder="Masukkan Nilai Wawancara" name="nilai_wawancara" id="data-wawancara" required />
@@ -165,36 +193,44 @@
         var psikotes = $(this).data('psikotest');
         var wawancara = $(this).data('wawancara');
 
+        $('.data-id').text(id);
+        $(".data-nama-user").text(nama)
+        $(".data-minat").text(minat)
+        $(".data-pengetahuan").text(pengetahuan)
+        $(".data-psikotest").text(psikotes);
+        $(".data-wawancara").text(wawancara);
+
         $('#data-id').val(id);
         $("#data-nama-user").val(nama)
         $("#data-minat").val(minat)
         $("#data-pengetahuan").val(pengetahuan)
         $("#data-psikotest").val(psikotes);
         $("#data-wawancara").val(wawancara);
-        
+
+
         $('#formEditNilai').on('submit', function(e) {
           e.preventDefault();
           var id = $('#data-id').val();
           var nilai_wawancara = $('#data-wawancara').val();
           var table = $('#table-data');
-            $.ajax({                   
+            $.ajax({
               url: "{{ url('nilai/update') }}/"+id+"",
               data: $(this).serializeArray(),
               type: "post",
               dataType: 'json',
               success: function(response) {
-                $('#modalEditNilai').trigger("reset"); 
+                $('#modalEditNilai').trigger("reset");
                 var notifikasi = `
                 <div class="alert alert-success alert-dismissible fade show" id="successAlert" role="alert">
                   ${response.message}
                   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
                 `;
-                $('#notifikasi').append(notifikasi); 
+                $('#notifikasi').append(notifikasi);
 
                 setTimeout(function() {
                   $('#successAlert').alert('close');
-                }, 2000);           
+                }, 2000);
             },
             error: function(response) {
                 console.log('Error:', response);

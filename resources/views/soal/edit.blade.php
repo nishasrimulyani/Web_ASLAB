@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.single-content')
 
 @section('main-content')
 
@@ -16,7 +16,7 @@
         <hr>
         <div class="container-fluid">
             <div class="card card-default">
-                <div class="card-body">
+                <div class="card-body px-0">
                 <form action="{{ route('soals.update', '$soal->id') }}" method="POST" enctype="multipart/form-data">
                         @method('PUT')
                         @csrf
@@ -38,7 +38,7 @@
                             </div>
                             @enderror
                         </div>
-                          
+
                         <div class="form-group">
                             <label>Gambar</label>
                                 <select class="form-control select-image @error('image_id') is-invalid @enderror" name="image_id">
@@ -57,7 +57,7 @@
                                 </div>
                             @enderror
                         </div>
-                          
+
 
                         <div class="form-group">
                             <label>DETAIL</label>

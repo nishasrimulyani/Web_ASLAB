@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.single-content')
 
 @section('main-content')
 <?php
@@ -15,7 +15,7 @@
 <hr>
 <div class="container-fluid">
   <div class="card card-default">
-    <div class="card-body">
+    <div class="card-body px-0">
       <form action="{{ route('roles.update', $role->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')

@@ -1,23 +1,15 @@
 @extends('layouts.admin')
 
-@section('main-content')
+@section('content-layout')
     <?php
-    $params_id = null;
+      $params_id = null;
 
     ?>
-    <div class="row mt-5">
-        <div class="col-lg-12 margin-tb">
-            <div class="float-start">
-                <h2>Ujian</h2>
-            </div>
+    <div class="d-flex flex-column flex-column-fluid">
+      <div class='d-flex flex-column-fluid'>
+        <div class='container-fluid p-5'>
+          @livewire('quiz', ['id' => $id, 'subject' => $subject, 'user' => $user])
         </div>
-    </div>
-    <hr>
-    <div class="container-fluid">
-        <div class="card card-default">
-            <div class="card-body">
-                @livewire('quiz', ['id' => $id])
-            </div>
-        </div>
+      </div>
     </div>
 @endsection

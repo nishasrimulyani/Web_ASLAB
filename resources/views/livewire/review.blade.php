@@ -5,7 +5,7 @@
         </div>
     </div>
     @foreach ($questions as $question)
-    <div class="card-body">
+    <div class="card-body px-0">
         <b>Soal No. {{ $questions->currentPage() }}</b>
         <p>{{ $question['detail'] }}</p>
            @if($question['image_id'])
@@ -14,7 +14,7 @@
                 NO
             @endif
         <br>
-        <i>Pilih salah satu jawaban dibawah ini:</i> 
+        <i>Pilih salah satu jawaban dibawah ini:</i>
         <br>
         <br>
         <div class="btn-group-vertical" role="group" aria-label="Basic example">
@@ -28,17 +28,17 @@
             wire:click="answers({{ $question['id'] }}, '{{ $question['option_D'] }}')"><p class="text-left"><b> D. {{ $question['option_D'] }} </b><i class="{{ $question['option_D'] == $question['answer'] ? 'fas fa-check' : ''  }}"></i></p></button>
         </div>
         <br><br>
-        <i>Pembahasan</i> 
+        <i>Pembahasan</i>
         <br>
-       
+
         <div class="alert alert-success" role="alert">
             {{ $question['penjelasan'] }}
         </div>
-        
+
     </div>
     @endforeach
-    
-    
+
+
     <div class="d-flex justify-content-center">
         {{$questions->links()}}
     </div>

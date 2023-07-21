@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.single-content')
 
 @section('main-content')
     <!-- Page Heading -->
@@ -72,7 +72,7 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
 
                             <div class="row">
                                 <div class="col-lg-12">
@@ -105,7 +105,7 @@
                             </div>
                         </div>
 
-                         Button 
+                         Button
                         <div class="pl-lg-4">
                             <div class="row">
                                 <div class="col text-center">
@@ -121,6 +121,6 @@
 
         </div>
 
-    </div> 
+    </div>
 
 @endsection

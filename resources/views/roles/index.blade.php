@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.single-content')
 
 @section('main-content')
     <?php
@@ -15,7 +15,7 @@
     <hr>
     <div class="container-fluid">
         <div class="card card-default">
-            <div class="card-body">
+            <div class="card-body px-0">
                 @hasanyrole('admin')
                 <a href="{{ route('roles.create') }}"><button class="btn btn-primary">Tambah Data</button></a>
                 <hr>
@@ -41,17 +41,17 @@
                                         @endforeach
                                     </td>
                                     <td class="text-center">
-                                        
+
                                             <a href="{{ route('roles.edit', $role->id) }}" class="btn btn-sm btn-primary">
                                                 <i class="fa fa-pencil-alt"></i>
                                             </a>
-                                       
-                                        
-                                        
+
+
+
                                             <button onClick="Delete(this.id)" class="btn btn-sm btn-danger" id="{{ $role->id }}">
                                                 <i class="fa fa-trash"></i>
                                             </button>
-                                        
+
                                     </td>
                                 </tr>
                             @endforeach

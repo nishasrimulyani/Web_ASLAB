@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.single-content')
 
 @section('main-content')
     <?php
@@ -18,7 +18,7 @@
             <div class="card-header">
                 <h4><i class="fas fa-exam"></i> Hasil {{ $exam->name.' '.$user->name }}</h4>
             </div>
-            <div class="card-body">
+            <div class="card-body px-0">
                 <h4>Score Anda Adalah {{ round($score, 2) }}</h4>
             </div>
             <div class="card-footer">
