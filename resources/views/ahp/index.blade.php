@@ -49,14 +49,10 @@
                                     <td>
                                         <select id="psikotest" class="form-select">
                                             <option value="" hidden>Pilih Bobot</option>
-                                            @php 
-                                            for($i = 1; $i <= 10; $i++){
-                                                @endphp
-                                                <option value="{{ $i }}">{{ $i }}</option>
-                                                @php
-                                            }
-
-                                            @endphp 
+                                            <option value="0.1">1</option>
+                                            <option value="0.2">2</option>
+                                            <option value="0.3">3</option>
+                                            <option value="0.4">4</option>
 
                                         </select>
                                     </td>
@@ -66,14 +62,10 @@
                                     <td>
                                         <select id="pengetahuan" class="form-select">
                                             <option value="" hidden>Pilih Bobot</option>
-                                            @php 
-                                            for($i = 1; $i <= 10; $i++){
-                                                @endphp
-                                                <option value="{{ $i }}">{{ $i }}</option>
-                                                @php
-                                            }
-
-                                            @endphp 
+                                            <option value="0.1">1</option>
+                                            <option value="0.2">2</option>
+                                            <option value="0.3">3</option>
+                                            <option value="0.4">4</option>
 
                                         </select>
                                     </td>
@@ -83,14 +75,10 @@
                                     <td>
                                         <select id="minat" class="form-select">
                                             <option value="" hidden>Pilih Bobot</option>
-                                            @php 
-                                            for($i = 1; $i <= 10; $i++){
-                                                @endphp
-                                                <option value="{{ $i }}">{{ $i }}</option>
-                                                @php
-                                            }
-
-                                            @endphp 
+                                            <option value="0.1">1</option>
+                                            <option value="0.2">2</option>
+                                            <option value="0.3">3</option>
+                                            <option value="0.4">4</option>
 
                                         </select>
                                     </td>
@@ -100,14 +88,10 @@
                                     <td>
                                         <select id="wawancara" class="form-select">
                                             <option value="" hidden>Pilih Bobot</option>
-                                            @php 
-                                            for($i = 1; $i <= 10; $i++){
-                                                @endphp
-                                                <option value="{{ $i }}">{{ $i }}</option>
-                                                @php
-                                            }
-
-                                            @endphp 
+                                            <option value="0.1">1</option>
+                                            <option value="0.2">2</option>
+                                            <option value="0.3">3</option>
+                                            <option value="0.4">4</option>
 
                                         </select>
                                     </td>
@@ -166,7 +150,7 @@
             <div class="card-body px-0">
                 <h6>Tabel Hasil Perhitungan AHP</h6>
                 <div class="table table-bordered table-responsive">
-                <table class="table">
+                <table class="table" id="table_rank">
                     <thead>
                     <tr class="text-uppercase">
                         <th scope="col">Nama</th> 
@@ -194,26 +178,39 @@
             var pengetahuan = $('#pengetahuan').val();
             var minat = $('#minat').val();
             var psikotest = $('#psikotest').val();
-            var wawancara = $('#wawancara').val();
+            var wawancara = $('#wawancara').val(); 
+            if(pengetahuan == "" || minat == "" || psikotest == "" || wawancara == "")
+            {
+                alert('Isikan bobot dengan benar');
+            } else 
+            {
+                $.ajax({
+                    url: "{{ url('ahp/calculate-ranking') }}",
+                    data: {
+                        bobot_pengetahuan: pengetahuan,
+                        bobot_minat: minat,
+                        bobot_psikotest: psikotest,
+                        bobot_wawancara: wawancara,
+                        '_token': '{{ csrf_token() }}'
+                    },
+                    type: 'post',
+                    success: function(res) {    
+                        var tbody = $('#table_rank tbody');          
+                        tbody.empty();
+                        for(var i = 0; i < res.data.length; i++) 
+                        {
+                            var row = '<tr>';
+                            row += `<td>${res.data[i].nama_user}</td>`;
+                            row += `<td>${i + 1}</td>`;
+                            row += '</tr>';
+                            tbody.append(row);
+                        }       
+                    },
+                    error: function(err) {
 
-            // console.log(pengetahuan, minat, psikotest, wawancara);
-            $.ajax({
-                url: "{{ url('ahp/calculate-ranking') }}",
-                data: {
-                    bobot_pengetahuan: pengetahuan,
-                    bobot_minat: minat,
-                    bobot_psikotest: psikotest,
-                    bobot_wawancara: wawancara,
-                    '_token': '{{ csrf_token() }}'
-                },
-                type: 'post',
-                success: function(res) {
-
-                },
-                error: function(err) {
-
-                }
-            })
+                    }
+                })
+            } 
         });
     });
 </script>
