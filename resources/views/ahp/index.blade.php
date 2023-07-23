@@ -210,6 +210,7 @@
 
                     }
                 })
+              $('#hitungAhpModal').modal('hide');
             } 
         });
     });
