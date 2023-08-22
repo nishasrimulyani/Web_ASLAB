@@ -5,16 +5,45 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use TheSeer\Tokenizer\Exception;
+use App\Models\DataNilai;
+
 class AhpController extends Controller
 {
     public function index()
     {
-        $datanilai = DB::table('data_nilais as a')
+        $dataNilai = DB::table('data_nilais as a')
                     ->join('users as b', 'a.id_user', '=', 'b.id')
                     ->select('a.*', 'b.nama as nama_user')
                     ->get();
 
-        return view('ahp.index', compact('datanilai'));
+        $dataRating = DB::table('data_nilais as a')
+                    ->join('users as b', 'a.id_user', '=', 'b.id')
+                    ->select(['b.nama as nama_user',
+                        DB::raw('
+                        ((CASE WHEN `nilai_psikotest` > 80 THEN 1
+                            WHEN `nilai_psikotest` BETWEEN 70 AND 80 THEN 0.67
+                            ELSE 0.33
+                        END) * 0.053107614 +
+                        (CASE WHEN `nilai_minat` > 80 THEN 1.33
+                            WHEN `nilai_minat` BETWEEN 70 AND 80 THEN 1
+                            ELSE 0.66
+                        END) * 0.202389902 +
+                        (CASE WHEN `nilai_pengetahuan` > 80 THEN 1
+                            WHEN `nilai_pengetahuan` BETWEEN 6700 AND 80 THEN 0.67
+                            ELSE 0.33
+                        END) * 0.127920064 +
+                        (CASE WHEN `nilai_wawancara` > 80 THEN 1.66
+                            WHEN `nilai_wawancara` BETWEEN 70 AND 80 THEN 1
+                            ELSE 0.33
+                        END) * 0.616582419
+                        ) AS total
+                        '),
+                    ])
+                    ->orderByDesc('total')
+                    ->get();
+        // $dataNilai = DataNilai::where()get();
+        // dd( $dataNilai);
+        return view('ahp.index', compact('dataNilai','dataRating'));
     }
 
     public function calculateRanking(Request $request)

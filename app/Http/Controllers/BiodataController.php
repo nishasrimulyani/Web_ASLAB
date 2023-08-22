@@ -22,7 +22,8 @@ class BiodataController extends Controller
         })->paginate(10)
             ->toArray();
 
-        $lowongans = new Lowongan();
+        // $lowongans = new Lowongan();
+        $lowongans = Lowongan::latest()->get();
 
         return view('biodata.index', compact('documents','lowongans'));
     }
@@ -37,9 +38,9 @@ class BiodataController extends Controller
     public function create()
     {
         $lowongans = Lowongan::latest()->get();
-        return view('biodata.index', compact('lowongans'));
-        
-        
+
+        dd($lowongans);
+        return view('biodata.index', compact('lowongans'));     
     }
 
     public function store(Request $request)
@@ -72,7 +73,7 @@ class BiodataController extends Controller
 
         if($document){
             //redirect dengan pesan sukses
-            return redirect()->route('biodata.index')->with(['success' => 'Data Berhasil Disimpan!']);
+            return redirect()->route('home')->with(['success' => 'Data Berhasil Disimpan!']);
         }else{
             //redirect dengan pesan error
             return redirect()->route('biodata.index')->with(['error' => 'Data Gagal Disimpan!']);

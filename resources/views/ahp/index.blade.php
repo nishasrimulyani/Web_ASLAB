@@ -127,7 +127,7 @@
                     </thead>
                     <tbody>
                     @php $i = 1; @endphp
-                    @forelse($datanilai as $row)
+                    @forelse($dataNilai as $row)
                     <tr>
                         <td>{{ $i++ }}</td>
                         <td>{{ $row->nama_user }}</td>
@@ -158,15 +158,50 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td colspan="2" align="center"><span class="text-muted fst-italic">Silahkan hitung ahp terlebih dahulu</span></td>
+                    @php $i = 1; @endphp
+                    @forelse($dataRating as $row)
+                    <tr>                   
+                        <td>{{ $row->nama_user }}</td>  
+                        <td>{{ $i++ }}</td>
                     </tr>
+                    @empty 
+                    <tr>
+                        <td colspan="6" align="center"><span class="text-muted fst-italic">Tidak ada data</span></td>
+                    </tr>
+                    </tbody>
+                    @endforelse
                     </tbody>
                 </table>
                 </div>
             </div>
          </div>
        </div>
+       <!-- <div class="row">
+            <div class="card-body px-0">
+                <h6>Tabel Nilai Peserta</h6>
+                <div class="table table-bordered table-responsive">
+                <table class="table">
+                    <thead>
+                    <tr class="text-uppercase">
+                        <th scope="col">No</th> 
+                        <th scope="col" style="width: 50%;">Nama Peserta</th> 
+                        <th scope="col">Psikotest</th>
+                        <th scope="col">Pengetahuan Umum</th>   
+                        <th scope="col">Minat</th>                           
+                        <th scope="col">Wawancara</th>              
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    <tr>
+                        <td colspan="6" align="center"><span class="text-muted fst-italic">Tidak ada data</span></td>
+                    </tr>
+                    </tbody>
+
+                </table>
+                </div>
+            </div>
+        </div> -->
     </div>
   </div>
 </div>

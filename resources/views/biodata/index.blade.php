@@ -135,11 +135,11 @@
 
                 <select class="form-control select-lowongan @error('lowongan_id') is-invalid @enderror" name="lowongan_id">
                   <option value="">- Pilih Lowongan -</option>
-                  @if ($lowongans->lowongan instanceof Illuminate\Database\Eloquent\Collection)
-                  @foreach ($lowongans->lowongan as $lowongan)
+                  
+                  @foreach ($lowongans as $lowongan)
                   <option value="{{ $lowongan->id }}">{{ $lowongan->nama_loker }}</option>
                   @endforeach
-                  @endif
+                  
                 </select>
                 @error('lowongan_id')
                 <div class="invalid-feedback font-italic fst-italic" style="display: block">
