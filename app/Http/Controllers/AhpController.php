@@ -24,17 +24,17 @@ class AhpController extends Controller
                             WHEN `nilai_psikotest` BETWEEN 70 AND 80 THEN 0.67
                             ELSE 0.33
                         END) * 0.053107614 +
-                        (CASE WHEN `nilai_minat` > 80 THEN 1.33
-                            WHEN `nilai_minat` BETWEEN 70 AND 80 THEN 1
-                            ELSE 0.66
+                        (CASE WHEN `nilai_minat` > 80 THEN 1
+                            WHEN `nilai_minat` BETWEEN 70 AND 80 THEN 0.75
+                            ELSE 0.5
                         END) * 0.202389902 +
                         (CASE WHEN `nilai_pengetahuan` > 80 THEN 1
                             WHEN `nilai_pengetahuan` BETWEEN 6700 AND 80 THEN 0.67
                             ELSE 0.33
                         END) * 0.127920064 +
-                        (CASE WHEN `nilai_wawancara` > 80 THEN 1.66
-                            WHEN `nilai_wawancara` BETWEEN 70 AND 80 THEN 1
-                            ELSE 0.33
+                        (CASE WHEN `nilai_wawancara` > 80 THEN 1
+                            WHEN `nilai_wawancara` BETWEEN 70 AND 80 THEN 0.6
+                            ELSE 0.2
                         END) * 0.616582419
                         ) AS total
                         '),

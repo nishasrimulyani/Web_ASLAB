@@ -12,9 +12,6 @@ class JenisSoal extends Model
     protected $fillable = [
         'nama_soal',
         'jumlah_soal',
-        'jumlah_minimal_benar',
-        'total_nilai',
-        'passing_grade',
     ];
 
     protected $guarded = [];

@@ -43,9 +43,6 @@
               <tr class="text-uppercase">
                 <th>Nama Soal</th>
                 <th>Jumlah Soal</th>
-                <th>Jumlah Minimal Benar</th>
-                <th>Total Nilai</th>
-                <th>Passing Grade</th>
                 <th>Aksi</th>
               </tr>
             </thead>
@@ -54,9 +51,6 @@
             <tr>
               <td>{{ $jenis_soal->nama_soal }} </td>
               <td>{{ $jenis_soal->jumlah_soal }}</td>
-              <td>{{ $jenis_soal->jumlah_minimal_benar }} </td>
-              <td>{{ $jenis_soal->total_nilai }}</td>
-              <td>{{ $jenis_soal->passing_grade }}</td>
               <td>
                 <button
                   type="button"
@@ -68,9 +62,6 @@
                   data-id="{{ $jenis_soal->id }}"
                   data-nama_soal="{{ $jenis_soal->nama_soal }}"
                   data-jumlah_soal="{{ $jenis_soal->jumlah_soal }}"
-                  data-jumlah_minimal_benar="{{ $jenis_soal->jumlah_minimal_benar }}"
-                  data-total_nilai="{{ $jenis_soal->total_nilai }}"
-                  data-passing_grade="{{ $jenis_soal->passing_grade }}"
                   data-created_at="{{ $jenis_soal->created_at }}"
                 >
                   <i class="fa-solid fa-pen-to-square"></i>
@@ -114,33 +105,20 @@
                 <div class="row">
                   <div class="col-12">
                     <div class="form-group">
-                      <label for="data-nama_soal">Nama Soal</label>
-                      <input type="text" class="form-control" placeholder="Masukkan Nama Soal" name="nama_soal" id="edit_nama_soal" required />
+                      <label for="edit_nama_soal">Nama Soal</label>
+                      <select name="nama_soal" class="form-select" id="edit_nama_soal">
+                        <option value="" hidden>Pilih Nama Soal</option>
+                        <option value="Psikotest">Psikotest</option>
+                        <option value="Pengetahuan Umum">Pengetahuan Umum</option>
+                        <option value="Pengetahuan Minat">Pengetahuan Minat</option>
+                      </select>
+                      <!-- <input type="text" class="form-control" placeholder="Masukkan Nama Soal" name="nama_soal" id="edit_nama_soal" required /> -->
                     </div>
                   </div>
                   <div class="col-6">
                     <div class="form-group">
                       <label for="data-jumlah_soal">Jumlah Soal</label>
                       <input type="number" class="form-control" placeholder="Masukkan Jumlah Soal" name="jumlah_soal" id="edit_jumlah_soal" required />
-                    </div>
-                  </div>
-                  <div class="col-6">
-                    <div class="form-group">
-                      <label for="data_jumlah_minimal_benar">Jumlah Minimal Benar</label>
-                      <input type="number" class="form-control" placeholder="Masukkan Jumlah Minimal Benar" name="jumlah_minimal_benar"
-                      id="edit_jumlah_minimal_benar" required />
-                    </div>
-                  </div>
-                  <div class="col-6">
-                    <div class="form-group">
-                      <label for="data-total_nilai">Total Nilai</label>
-                      <input type="number" class="form-control" name="total_nilai" placeholder="Masukkan Total Nilai" id="edit_total_nilai" required />
-                    </div>
-                  </div>
-                  <div class="col-6">
-                    <div class="form-group">
-                      <label for="data-passing_grade">Passing Grade</label>
-                      <input type="number" class="form-control" name="passing_grade" placeholder="Masukkan Passing Grade" id="edit_passing_grade" required />
                     </div>
                   </div>
                 </div>
@@ -180,32 +158,19 @@ aria-hidden="true">
                 <div class="col-12">
                   <div class="form-group">
                     <label for="data-nama_soal">Nama Soal</label>
-                    <input type="text" class="form-control" placeholder="Masukkan Nama Soal" name="nama_soal" id="nama_soal" required />
+                    <select name="nama_soal" class="form-select" id="data-nama-soal">
+                      <option value="" hidden>Pilih Nama Soal</option>
+                      <option value="Psikotest">Psikotest</option>
+                      <option value="Pengetahuan Umum">Pengetahuan Umum</option>
+                      <option value="Pengetahuan Minat">Pengetahuan Minat</option>
+                    </select>
+                    <!-- <input type="text" class="form-control" placeholder="Masukkan Nama Soal" name="nama_soal" id="nama_soal" required /> -->
                   </div>
                 </div>
                 <div class="col-6">
                   <div class="form-group">
                     <label for="data-jumlah_soal">Jumlah Soal</label>
                     <input type="number" class="form-control" placeholder="Masukkan Jumlah Soal" name="jumlah_soal" id="jumlah_soal" required />
-                  </div>
-                </div>
-                <div class="col-6">
-                  <div class="form-group">
-                    <label for="data-jumlah_minimal_benar">Jumlah Minimal Benar</label>
-                    <input type="number" class="form-control" placeholder="Masukkan Jumlah Minimal Benar" name="jumlah_minimal_benar"
-                    id="jumlah_minimal_benar" required />
-                  </div>
-                </div>
-                <div class="col-6">
-                  <div class="form-group">
-                    <label for="data-total_nilai">Total Nilai</label>
-                    <input type="number" class="form-control" name="total_nilai" placeholder="Masukkan Total Nilai" id="total_nilai" required />
-                  </div>
-                </div>
-                <div class="col-6">
-                  <div class="form-group">
-                    <label for="data-passing_grade">Passing Grade</label>
-                    <input type="number" class="form-control" name="passing_grade" placeholder="Masukkan Passing Grade" id="passing_grade" required />
                   </div>
                 </div>
               </div>
@@ -247,24 +212,23 @@ aria-hidden="true">
                     },
                     success: function(response) {
                         $('#jenisForm').trigger("reset");
-                        var notifikasi = `
-                        <div class="alert alert-success alert-dismissible fade show" id="successAlert" role="alert">
-                          ${response.message}
-                          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
-                        `;
-                        $('#notifikasi').append(notifikasi);
+                        // var notifikasi = `
+                        // <div class="alert alert-success alert-dismissible fade show" id="successAlert" role="alert">
+                        //   ${response.message}
+                        //   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        // </div>
+                        // `;
+                        // $('#notifikasi').append(notifikasi);
 
-                      setTimeout(function() {
-                        $('#successAlert').alert('close');
-                      }, 2000);
+                      // setTimeout(function() {
+                      //   $('#successAlert').alert('close');
+                      // }, 2000);
                       },
                       error: function(response) {
                           console.log('Error:', response);
                           $('#saveBtn').html('Save Changes');
                       }
-                  });
-                  $('#tambahJenisModal').modal('hide');
+                  }); 
                   // table.load(document.URL + ' #table-data');
                   location.reload();
               });
@@ -307,12 +271,12 @@ aria-hidden="true">
 
         //update
         function updateConfirmation(id) {
-            $("#edit_nama_soal").val($(".editJenis-" + id).attr("data-nama_soal"))
+            var nama_soal = $(".editJenis-" + id).attr("data-nama_soal");
+            // nama_soal = nama_soal.split(' ').join('_').toLowerCase();
+            $("#edit_nama_soal").val(nama_soal);
             $("#edit_id").val($(".editJenis-" + id).attr("data-id"))
             $("#edit_jumlah_soal").val($(".editJenis-" + id).attr("data-jumlah_soal"))
-            $("#edit_jumlah_minimal_benar").val($(".editJenis-" + id).attr("data-jumlah_minimal_benar"))
-            $("#edit_total_nilai").val($(".editJenis-" + id).attr("data-total_nilai"))
-            $("#edit_passing_grade").val($(".editJenis-" + id).attr("data-passing_grade"))
+            
         }
 </script>
 @endpush

@@ -19,17 +19,11 @@ class JenisSoalController extends Controller
         $validate = $request->all([
             'nama_soal' => 'required|max255',
             'jumlah_soal' => 'required',
-            'jumlah_minimal_benar' => 'required',
-            'total_nilai' => 'required',
-            'passing_grade' => 'required',
         ]);
 
         JenisSoal::Create([
             'nama_soal' => $request->nama_soal,
             'jumlah_soal' => $request->jumlah_soal,
-            'jumlah_minimal_benar' => $request->jumlah_minimal_benar,
-            'total_nilai' => $request->total_nilai,
-            'passing_grade' => $request->passing_grade,
         ]);
 
         return response()->json([
@@ -45,16 +39,10 @@ class JenisSoalController extends Controller
         $validate = $req->validate([
             'nama_soal' => 'required',
             'jumlah_soal' => 'required',
-            'jumlah_minimal_benar' => 'required',
-            'total_nilai' => 'required',
-            'passing_grade' => 'required',
         ]);
 
         $jenis_soals->nama_soal = $req->nama_soal;
         $jenis_soals->jumlah_soal = $req->jumlah_soal;
-        $jenis_soals->jumlah_minimal_benar = $req->jumlah_minimal_benar;
-        $jenis_soals->total_nilai = $req->total_nilai;
-        $jenis_soals->passing_grade = $req->passing_grade;
 
         $jenis_soals->update();
 

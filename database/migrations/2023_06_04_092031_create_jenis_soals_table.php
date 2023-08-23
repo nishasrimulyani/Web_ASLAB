@@ -15,9 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('nama_soal');
             $table->integer('jumlah_soal');
-            $table->integer('jumlah_minimal_benar');
-            $table->integer('total_nilai');
-            $table->integer('passing_grade');
             $table->timestamps();
         });
     }
