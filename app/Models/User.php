@@ -18,7 +18,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'nama', 'email', 'password',
+        'name', 'email', 'password',
     ];
 
     /**
@@ -59,9 +59,9 @@ class User extends Authenticatable
      * @param string $value
      * @return void
      */
-    public function setPasswordAttribute($value)
+    public function setPasswordAttribute($password)
     {
-        $this->attributes['password'] = bcrypt($value);
+        $this->attributes['password'] = bcrypt($password);
     }
 
     public function ujians(){

@@ -64,13 +64,13 @@
             {{ __('Pengaturan') }}
         </div> -->
 
-      <!-- Nav Item - Data Panitia -->
+      <!-- Nav Item - Data Panitia 
       <li class="nav-item {{ Nav::isRoute('datapanitia.index') }}">
         <a class="nav-link" href="{{ route('datapanitia.index') }}">
           <i class="fas fa-fw fa-user"></i>
           <span>{{ __('Data Panitia') }}</span>
         </a>
-      </li>
+      </li> -->
 
       <!-- Nav Item - Lowongan Asisten -->
       <li class="nav-item {{ Nav::isRoute('lowongan.index') }}">
@@ -134,7 +134,7 @@
       <li class="nav-item {{ Nav::isRoute('biodata.index') }} dropdown">
         <a class="nav-link" href="{{ route('biodata.index') }}">
           <i class="fas fa-list-check"></i>
-          <span>{{ __('Biodata') }}</span>
+          <span>{{ __('Dokumen') }}</span>
         </a>
       </li>
 
@@ -352,8 +352,8 @@
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Auth::user()->nama ?? ''}}</span>
-                <figure class="img-profile rounded-circle avatar font-weight-bold" data-initial="{{ Auth::user()->nama[0] }}"></figure>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Auth::user()->name ?? ''}}</span>
+                <figure class="img-profile rounded-circle avatar font-weight-bold" data-initial="{{ Auth::user()->name[0] }}"></figure>
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">

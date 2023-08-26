@@ -13,7 +13,7 @@ class UserController extends Controller
     public function index()
     {
         $users = User::latest()->when(request()->q, function($users) {
-            $users = $users->where('nama', 'like', '%'. request()->q . '%');
+            $users = $users->where('name', 'like', '%'. request()->q . '%');
         })->paginate(10);
 
         return view('users.index', compact('users'));
@@ -39,13 +39,13 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'nama'      => 'required',
+            'name'      => 'required',
             'email'     => 'required|email|unique:users',
             'password'  => 'required|confirmed'
         ]);
 
         $user = User::create([
-            'nama'      => $request->input('nama'),
+            'name'      => $request->input('name'),
             'email'     => $request->input('email'),
             'password'  => bcrypt($request->input('password'))
         ]);
@@ -84,7 +84,7 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         $this->validate($request, [
-            'nama'      => 'required',
+            'name'      => 'required',
             'email'     => 'required|email|unique:users,email,'.$user->id
         ]);
 
@@ -92,12 +92,12 @@ class UserController extends Controller
 
         if($request->input('password') == "") {
             $user->update([
-                'nama'      => $request->input('nama'),
+                'name'      => $request->input('nama'),
                 'email'     => $request->input('email')
             ]);
         } else {
             $user->update([
-                'nama'      => $request->input('nama'),
+                'name'      => $request->input('nama'),
                 'email'     => $request->input('email'),
                 'password'  => bcrypt($request->input('password'))
             ]);

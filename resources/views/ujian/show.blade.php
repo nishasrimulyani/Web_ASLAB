@@ -68,8 +68,8 @@
                 </div>
                 <hr class="mt-0">
                 @php
-                $mulai = \Carbon\Carbon::parse($ujian->mulai);
-                $selesai = \Carbon\Carbon::parse($ujian->selesai);
+                  $mulai = \Carbon\Carbon::parse($ujian->mulai);
+                  $selesai = \Carbon\Carbon::parse($ujian->selesai);
                 @endphp
                 @if(now() >= $mulai && $mulai <= $selesai)
                   <a href="{{ route('ujians.start', $ujian->id) }}" class="btn btn-primary btn-block font-weight-bolder text-uppercase" role="button" aria-pressed="true">Mulai Ujian</a>

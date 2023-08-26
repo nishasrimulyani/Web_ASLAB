@@ -35,7 +35,7 @@
                             @foreach ($users as $no => $user)
                                 <tr>
                                     <th scope="row" style="text-align: center">{{ ++$no + ($users->currentPage()-1) * $users->perPage() }}</th>
-                                    <td>{{ $user->nama }}</td>
+                                    <td>{{ $user->name }}</td>
                                     <td>
                                         @if(!empty($user->getRoleNames()))
                                             @foreach($user->getRoleNames() as $role)
