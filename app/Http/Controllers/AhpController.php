@@ -46,6 +46,24 @@ class AhpController extends Controller
         return view('ahp.index', compact('dataNilai','dataRating'));
     }
 
+    public function pairwisematrix(Request $request){
+        
+       $matrix = [
+            [$request->input('value00'), $request->input('value01')],
+            [$request->input('value10'), $request->input('value11')]
+        ];
+
+        // foreach($kriteria as $data){
+        //     foreach($kriteria as $data){
+        //         $processedData = $this->processMatrixData($matrix);
+        //     }
+        // }
+    }
+
+    public function processMatrixData(){
+
+    }
+    
     public function calculateRanking(Request $request)
     {
         // Bobot untuk setiap kriteria (bisa disesuaikan dengan kebutuhan)
